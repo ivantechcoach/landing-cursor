@@ -1,6 +1,7 @@
 /**
  * Root Layout Component
  * This is the main layout component that wraps all pages
+ * Required by Next.js 14 App Router
  */
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://tu-dominio.com'),
+  metadataBase: new URL('https://ivantechcoach.com'),
   alternates: {
     canonical: '/',
     languages: {
