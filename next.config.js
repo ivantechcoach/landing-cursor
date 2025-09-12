@@ -25,16 +25,16 @@ const nextConfig = {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
   
-  // Redirects for SEO
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/es',
-        permanent: true,
-      },
-    ];
-  },
+  // Redirects for SEO - Removed to avoid conflict with app/page.tsx
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/',
+  //       destination: '/es',
+  //       permanent: true,
+  //     },
+  //   ];
+  // },
   
   // Headers for security
   async headers() {
