@@ -5,6 +5,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -56,8 +57,17 @@ export default function Header({ language = 'es' }: HeaderProps) {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href={`/${language}`} className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
-              Iván Portfolio
+            <Link href={`/${language}`} className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <Image
+                src="/images/branding/logo.svg"
+                alt="Ivan Tech Coach Logo"
+                width={40}
+                height={40}
+                className="w-10 h-10"
+              />
+              <span className="text-2xl font-bold text-gray-900">
+                Ivan Tech Coach
+              </span>
             </Link>
           </div>
 

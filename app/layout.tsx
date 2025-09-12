@@ -12,14 +12,14 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Mi Portfolio - Desarrollador Full Stack',
-    template: '%s | Mi Portfolio',
+    default: 'Ivan Tech Coach - Coaching Tecnológico Profesional',
+    template: '%s | Ivan Tech Coach',
   },
-  description: 'Desarrollador Full Stack especializado en crear experiencias digitales excepcionales. Portfolio personal con proyectos, servicios y blog.',
-  keywords: ['desarrollador', 'full stack', 'portfolio', 'react', 'nextjs', 'typescript', 'javascript'],
-  authors: [{ name: 'Tu Nombre' }],
-  creator: 'Tu Nombre',
-  publisher: 'Tu Nombre',
+  description: 'Transforma tu carrera tecnológica con coaching personalizado. Aprende las habilidades más demandadas del mercado y acelera tu crecimiento profesional con Ivan Tech Coach.',
+  keywords: ['tech coach', 'coaching tecnológico', 'desarrollo profesional', 'carrera tecnológica', 'mentoring', 'programación', 'desarrollo web', 'devops', 'liderazgo técnico'],
+  authors: [{ name: 'Ivan Tech Coach' }],
+  creator: 'Ivan Tech Coach',
+  publisher: 'Ivan Tech Coach',
   formatDetection: {
     email: false,
     address: false,
@@ -37,25 +37,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_ES',
-    url: 'https://tu-dominio.com',
-    title: 'Mi Portfolio - Desarrollador Full Stack',
-    description: 'Desarrollador Full Stack especializado en crear experiencias digitales excepcionales.',
-    siteName: 'Mi Portfolio',
+    url: 'https://ivantechcoach.com',
+    title: 'Ivan Tech Coach - Coaching Tecnológico Profesional',
+    description: 'Transforma tu carrera tecnológica con coaching personalizado. Aprende las habilidades más demandadas del mercado y acelera tu crecimiento profesional.',
+    siteName: 'Ivan Tech Coach',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/images/branding/og-cover.jpg',
         width: 1200,
         height: 630,
-        alt: 'Mi Portfolio - Desarrollador Full Stack',
+        alt: 'Ivan Tech Coach - Coaching Tecnológico Profesional',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mi Portfolio - Desarrollador Full Stack',
-    description: 'Desarrollador Full Stack especializado en crear experiencias digitales excepcionales.',
-    images: ['/og-image.jpg'],
-    creator: '@tu_usuario',
+    title: 'Ivan Tech Coach - Coaching Tecnológico Profesional',
+    description: 'Transforma tu carrera tecnológica con coaching personalizado. Aprende las habilidades más demandadas del mercado.',
+    images: ['/images/branding/og-cover.jpg'],
+    creator: '@ivantechcoach',
   },
   robots: {
     index: true,

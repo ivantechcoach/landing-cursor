@@ -161,9 +161,16 @@ export default function Footer({ language = 'es' }: FooterProps) {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="text-center text-gray-400">
             <p className="mb-2">&copy; 2024 {currentContent.title}. {currentContent.rights}</p>
-            <p className="text-sm text-gray-500 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-sm text-gray-500 max-w-4xl mx-auto leading-relaxed mb-4">
               {currentContent.madeBy}
             </p>
+            <div className="bg-gray-800/50 rounded-lg p-4 max-w-2xl mx-auto">
+              <p className="text-xs text-gray-400 leading-relaxed">
+                <strong>Transparencia sobre IA:</strong> Este sitio web fue desarrollado con la asistencia de herramientas de IA (Gemini y Cursor) 
+                para demostrar habilidades de Context Engineering y Vibe Coding. El contenido y la estrategia de marca son auténticos y 
+                representan la experiencia real de Ivan como Tech Coach profesional.
+              </p>
+            </div>
           </div>
         </div>
       </div>
