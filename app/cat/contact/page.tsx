@@ -2,7 +2,13 @@
  * Pàgina de Contacte - Català
  * Ruta: /cat/contact
  */
+'use client';
+
 export default function ContactPageCAT() {
+  // Get environment variables
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+  const contactPhone = process.env.NEXT_PUBLIC_CONTACT_PHONE;
+  const contactAddress = process.env.NEXT_PUBLIC_CONTACT_ADDRESS;
   return (
     <main className="min-h-screen">
       <h1 className="text-4xl font-bold text-center py-8">
@@ -13,26 +19,48 @@ export default function ContactPageCAT() {
           <div>
             <h2 className="text-2xl font-semibold mb-6">Informació de Contacte</h2>
             <div className="space-y-4">
-              <div className="flex items-center">
-                <span className="font-medium mr-3">Email:</span>
-                <a href="mailto:contacte@exemple.com" className="text-blue-600 hover:underline">
-                  contacte@exemple.com
-                </a>
-              </div>
-              <div className="flex items-center">
-                <span className="font-medium mr-3">Telèfon:</span>
-                <span>+34 123 456 789</span>
-              </div>
+              {contactEmail ? (
+                <div className="flex items-center">
+                  <span className="font-medium mr-3">Email:</span>
+                  <a href={`mailto:${contactEmail}`} className="text-blue-600 hover:underline">
+                    {contactEmail}
+                  </a>
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <span className="font-medium mr-3">Email:</span>
+                  <span className="text-gray-500 italic">Configura NEXT_PUBLIC_CONTACT_EMAIL</span>
+                </div>
+              )}
+              {contactPhone ? (
+                <div className="flex items-center">
+                  <span className="font-medium mr-3">Telèfon:</span>
+                  <a href={`tel:${contactPhone}`} className="text-blue-600 hover:underline">
+                    {contactPhone}
+                  </a>
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <span className="font-medium mr-3">Telèfon:</span>
+                  <span className="text-gray-500 italic">Configura NEXT_PUBLIC_CONTACT_PHONE</span>
+                </div>
+              )}
+              {contactAddress && (
+                <div className="flex items-center">
+                  <span className="font-medium mr-3">Adreça:</span>
+                  <span>{contactAddress}</span>
+                </div>
+              )}
               <div className="flex items-center">
                 <span className="font-medium mr-3">LinkedIn:</span>
                 <a href="#" className="text-blue-600 hover:underline">
-                  linkedin.com/in/el-meu-perfil
+                  linkedin.com/in/ivan-tech-coach
                 </a>
               </div>
               <div className="flex items-center">
                 <span className="font-medium mr-3">GitHub:</span>
                 <a href="#" className="text-blue-600 hover:underline">
-                  github.com/el-meu-usuari
+                  github.com/ivan-tech-coach
                 </a>
               </div>
             </div>

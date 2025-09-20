@@ -209,7 +209,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 📞 Contacto
 
-- **Email**: contacto@ejemplo.com
+- **Email**: Configura NEXT_PUBLIC_CONTACT_EMAIL en .env.local
 - **LinkedIn**: [Tu perfil de LinkedIn](https://linkedin.com/in/tu-perfil)
 - **GitHub**: [Tu perfil de GitHub](https://github.com/tu-usuario)
 

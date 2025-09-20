@@ -2,7 +2,13 @@
  * Contact Page - English
  * Route: /en/contact
  */
+'use client';
+
 export default function ContactPageEN() {
+  // Get environment variables
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+  const contactPhone = process.env.NEXT_PUBLIC_CONTACT_PHONE;
+  const contactAddress = process.env.NEXT_PUBLIC_CONTACT_ADDRESS;
   return (
     <main className="min-h-screen">
       <h1 className="text-4xl font-bold text-center py-8">
@@ -13,26 +19,48 @@ export default function ContactPageEN() {
           <div>
             <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
             <div className="space-y-4">
-              <div className="flex items-center">
-                <span className="font-medium mr-3">Email:</span>
-                <a href="mailto:contact@example.com" className="text-blue-600 hover:underline">
-                  contact@example.com
-                </a>
-              </div>
-              <div className="flex items-center">
-                <span className="font-medium mr-3">Phone:</span>
-                <span>+34 123 456 789</span>
-              </div>
+              {contactEmail ? (
+                <div className="flex items-center">
+                  <span className="font-medium mr-3">Email:</span>
+                  <a href={`mailto:${contactEmail}`} className="text-blue-600 hover:underline">
+                    {contactEmail}
+                  </a>
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <span className="font-medium mr-3">Email:</span>
+                  <span className="text-gray-500 italic">Configure NEXT_PUBLIC_CONTACT_EMAIL</span>
+                </div>
+              )}
+              {contactPhone ? (
+                <div className="flex items-center">
+                  <span className="font-medium mr-3">Phone:</span>
+                  <a href={`tel:${contactPhone}`} className="text-blue-600 hover:underline">
+                    {contactPhone}
+                  </a>
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <span className="font-medium mr-3">Phone:</span>
+                  <span className="text-gray-500 italic">Configure NEXT_PUBLIC_CONTACT_PHONE</span>
+                </div>
+              )}
+              {contactAddress && (
+                <div className="flex items-center">
+                  <span className="font-medium mr-3">Address:</span>
+                  <span>{contactAddress}</span>
+                </div>
+              )}
               <div className="flex items-center">
                 <span className="font-medium mr-3">LinkedIn:</span>
                 <a href="#" className="text-blue-600 hover:underline">
-                  linkedin.com/in/my-profile
+                  linkedin.com/in/ivan-tech-coach
                 </a>
               </div>
               <div className="flex items-center">
                 <span className="font-medium mr-3">GitHub:</span>
                 <a href="#" className="text-blue-600 hover:underline">
-                  github.com/my-username
+                  github.com/ivan-tech-coach
                 </a>
               </div>
             </div>

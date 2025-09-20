@@ -7,7 +7,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useLocaleSwitcher } from '@/lib/hooks/useLocaleSwitcher';
+import { Locale, LOCALES, getLocaleDisplayName, getLocaleShortCode } from '@/lib/i18n';
 
 interface HeaderProps {
   language?: 'es' | 'en' | 'cat';
@@ -16,6 +18,8 @@ interface HeaderProps {
 export default function Header({ language = 'es' }: HeaderProps) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { switchLocale, getCurrentLocale } = useLocaleSwitcher();
+  const mainRef = useRef<HTMLElement>(null);
   
   // Navigation items based on language
   const navigation = {
@@ -46,18 +50,56 @@ export default function Header({ language = 'es' }: HeaderProps) {
   };
 
   const currentNav = navigation[language];
+  const currentLocale = getCurrentLocale();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Handle locale switching with focus management
+  const handleLocaleSwitch = (newLocale: Locale) => {
+    switchLocale(newLocale);
+    
+    // Move focus to main content after locale change
+    // Use setTimeout to ensure DOM is updated
+    setTimeout(() => {
+      const mainElement = document.querySelector('main h1') as HTMLElement;
+      if (mainElement) {
+        mainElement.focus();
+      }
+    }, 100);
+  };
+
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      {/* Skip Link - First in tab order */}
+      <a 
+        href="#main-content" 
+        className="skip-link"
+        tabIndex={1}
+        onFocus={(e) => {
+          // Ensure skip link is visible when focused
+          e.target.style.top = '1rem';
+        }}
+        onBlur={(e) => {
+          // Hide skip link when not focused
+          e.target.style.top = '-100%';
+        }}
+      >
+        Saltar al contenido
+      </a>
+      
+      <header className="bg-white shadow-md sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href={`/${language}`} className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+            <Link 
+              href={`/${language}`} 
+              className="flex items-center space-x-3 hover:opacity-80 transition-opacity header-focus"
+              aria-label="Inicio — Ivan Tech Coach"
+              tabIndex={2}
+            >
               <Image
                 src="/images/branding/logo.svg"
                 alt="Ivan Tech Coach Logo"
@@ -79,11 +121,12 @@ export default function Header({ language = 'es' }: HeaderProps) {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors header-link-focus ${
                     isActive
                       ? 'text-blue-600 bg-blue-50'
                       : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                   }`}
+                  tabIndex={3}
                 >
                   {item.name}
                 </Link>
@@ -92,31 +135,30 @@ export default function Header({ language = 'es' }: HeaderProps) {
           </nav>
 
           {/* Language Switcher */}
-          <div className="hidden md:flex items-center space-x-2">
-            <Link
-              href="/es"
-              className={`px-2 py-1 text-sm rounded transition-colors ${
-                language === 'es' ? 'bg-blue-100 text-blue-800' : 'text-gray-600 hover:text-blue-600'
-              }`}
-            >
-              ES
-            </Link>
-            <Link
-              href="/en"
-              className={`px-2 py-1 text-sm rounded transition-colors ${
-                language === 'en' ? 'bg-blue-100 text-blue-800' : 'text-gray-600 hover:text-blue-600'
-              }`}
-            >
-              EN
-            </Link>
-            <Link
-              href="/cat"
-              className={`px-2 py-1 text-sm rounded transition-colors ${
-                language === 'cat' ? 'bg-blue-100 text-blue-800' : 'text-gray-600 hover:text-blue-600'
-              }`}
-            >
-              CAT
-            </Link>
+          <div className="hidden md:flex items-center space-x-1" role="group" aria-label="Seleccionar idioma">
+            {LOCALES.map((locale) => {
+              const isActive = currentLocale === locale;
+              return (
+                <button
+                  key={locale}
+                  type="button"
+                  onClick={() => handleLocaleSwitch(locale)}
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 header-button-focus ${
+                    isActive
+                      ? 'bg-blue-600 text-white shadow-sm'
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                  }`}
+                  role="button"
+                  tabIndex={4}
+                  aria-pressed={isActive}
+                  aria-current={isActive ? 'true' : 'false'}
+                  aria-label={`Cambiar a ${getLocaleDisplayName(locale)}`}
+                  data-active={isActive}
+                >
+                  {getLocaleShortCode(locale)}
+                </button>
+              );
+            })}
           </div>
 
           {/* Mobile menu button */}
@@ -124,8 +166,9 @@ export default function Header({ language = 'es' }: HeaderProps) {
             <button
               type="button"
               onClick={toggleMobileMenu}
-              className="text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600 transition-colors"
+              className="text-gray-700 hover:text-blue-600 header-focus transition-colors"
               aria-label="Toggle menu"
+              tabIndex={5}
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMobileMenuOpen ? (
@@ -149,11 +192,12 @@ export default function Header({ language = 'es' }: HeaderProps) {
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    className={`block px-3 py-2 rounded-md text-base font-medium transition-colors header-link-focus ${
                       isActive
                         ? 'text-blue-600 bg-blue-50'
                         : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                     }`}
+                    tabIndex={isMobileMenuOpen ? 6 : -1}
                   >
                     {item.name}
                   </Link>
@@ -162,34 +206,36 @@ export default function Header({ language = 'es' }: HeaderProps) {
               
               {/* Mobile Language Switcher */}
               <div className="pt-4 border-t border-gray-200">
-                <div className="flex space-x-4 px-3">
-                  <Link
-                    href="/es"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`px-3 py-2 text-sm rounded transition-colors ${
-                      language === 'es' ? 'bg-blue-100 text-blue-800' : 'text-gray-600 hover:text-blue-600'
-                    }`}
-                  >
-                    ES
-                  </Link>
-                  <Link
-                    href="/en"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`px-3 py-2 text-sm rounded transition-colors ${
-                      language === 'en' ? 'bg-blue-100 text-blue-800' : 'text-gray-600 hover:text-blue-600'
-                    }`}
-                  >
-                    EN
-                  </Link>
-                  <Link
-                    href="/cat"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`px-3 py-2 text-sm rounded transition-colors ${
-                      language === 'cat' ? 'bg-blue-100 text-blue-800' : 'text-gray-600 hover:text-blue-600'
-                    }`}
-                  >
-                    CAT
-                  </Link>
+                <div className="px-3">
+                  <h3 className="text-sm font-medium text-gray-900 mb-3">Idioma</h3>
+                  <div className="flex space-x-2" role="group" aria-label="Seleccionar idioma">
+                    {LOCALES.map((locale) => {
+                      const isActive = currentLocale === locale;
+                      return (
+                        <button
+                          key={locale}
+                          type="button"
+                          onClick={() => {
+                            handleLocaleSwitch(locale);
+                            setIsMobileMenuOpen(false);
+                          }}
+                          className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 header-button-focus ${
+                            isActive
+                              ? 'bg-blue-600 text-white shadow-sm'
+                              : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                          }`}
+                          role="button"
+                          tabIndex={isMobileMenuOpen ? 7 : -1}
+                          aria-pressed={isActive}
+                          aria-current={isActive ? 'true' : 'false'}
+                          aria-label={`Cambiar a ${getLocaleDisplayName(locale)}`}
+                          data-active={isActive}
+                        >
+                          {getLocaleDisplayName(locale)}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
@@ -197,5 +243,6 @@ export default function Header({ language = 'es' }: HeaderProps) {
         )}
       </div>
     </header>
+    </>
   );
 }
