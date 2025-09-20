@@ -2,6 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom focus styles for better accessibility */
+@layer utilities {
+  .focus-visible-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+  }
+  
+  /* Header navigation focus styles */
+  .header-focus {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+  }
+  
+  .header-link-focus {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-blue-50 focus-visible:text-blue-700;
+  }
+  
+  .header-button-focus {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-blue-600 focus-visible:text-white;
+  }
+  
+  /* Skip link styles */
+  .skip-link {
+    @apply absolute -top-full left-4 z-[60] bg-blue-600 text-white px-4 py-2 rounded-md font-medium transition-all duration-200 focus:top-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2;
+  }
+  
+  /* Ensure focus is visible even with reduced motion */
+  @media (prefers-reduced-motion: no-preference) {
+    .focus-visible-ring,
+    .header-focus,
+    .header-link-focus,
+    .header-button-focus {
+      @apply focus-visible:transition-all focus-visible:duration-200;
+    }
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .focus-visible-ring,
+    .header-focus,
+    .header-link-focus,
+    .header-button-focus {
+      @apply focus-visible:ring-4 focus-visible:ring-blue-700;
+    }
+    
+    .skip-link {
+      @apply focus-visible:ring-4 focus-visible:ring-blue-300;
+    }
+  }
+}
+
+/* Wave animation styles */
+@layer components {
+  .wave-path {
+    transform-origin: center;
+    will-change: transform;
+  }
+  
+  /* Smooth wave animation - only when motion is not reduced */
+  @media (prefers-reduced-motion: no-preference) {
+    .wave-path {
+      animation: waveFloat 3s ease-in-out infinite;
+    }
+  }
+  
+  /* Reduced motion - subtle animation or no animation */
+  @media (prefers-reduced-motion: reduce) {
+    .wave-path {
+      animation: waveFloatReduced 6s ease-in-out infinite;
+    }
+  }
+  
+  /* Keyframes for smooth wave animation */
+  @keyframes waveFloat {
+    0%, 100% {
+      transform: translateX(0) translateY(0) scale(1);
+    }
+    25% {
+      transform: translateX(-2px) translateY(-1px) scale(1.001);
+    }
+    50% {
+      transform: translateX(0) translateY(-2px) scale(1.002);
+    }
+    75% {
+      transform: translateX(2px) translateY(-1px) scale(1.001);
+    }
+  }
+  
+  /* Reduced motion keyframes - much more subtle */
+  @keyframes waveFloatReduced {
+    0%, 100% {
+      transform: translateX(0) translateY(0);
+    }
+    50% {
+      transform: translateX(0) translateY(-0.5px);
+    }
+  }
+}
+
 /* Custom CSS Variables */
 :root {
   --foreground-rgb: 0, 0, 0;

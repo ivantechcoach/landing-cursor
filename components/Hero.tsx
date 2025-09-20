@@ -63,7 +63,7 @@ export default function Hero({ language = 'es' }: HeroProps) {
   const currentContent = content[language];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ minHeight: '100vh' }}>
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -154,7 +154,8 @@ export default function Hero({ language = 'es' }: HeroProps) {
           {/* Right Column - Visual Element */}
           <div className="hidden lg:block">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-3xl"></div>
+              {/* Optimized background - removed heavy blur filter */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/15 to-purple-500/15 rounded-3xl"></div>
               <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
                 <div className="text-center text-white">
                   <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
@@ -171,19 +172,28 @@ export default function Hero({ language = 'es' }: HeroProps) {
         </div>
       </div>
 
-      {/* Wave SVG */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10">
+      {/* Wave SVG - Fixed height to prevent CLS */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10" style={{ height: '80px' }}>
         <svg
-          className="relative block w-full h-16 sm:h-20 lg:h-24"
+          className="relative block w-full h-full"
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
+          preserveAspectRatio="xMidYMax slice"
+          style={{ width: '100%', height: '100%' }}
         >
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+              <stop offset="50%" stopColor="#f8fafc" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
+            </linearGradient>
+          </defs>
           <path
             d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            className="fill-white"
-          ></path>
+            fill="url(#waveGradient)"
+            className="wave-path"
+          />
         </svg>
       </div>
     </section>

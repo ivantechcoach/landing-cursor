@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-   "dev": "next dev & xdg-open http://localhost:3000",
+    "dev": "next dev --port 3001",
+    "dev:open": "concurrently --kill-others-on-fail \"next dev --port 3001\" \"powershell -Command Start-Sleep 5; Start-Process http://localhost:3001\"",
+    "dev:clean": "next dev --port 3001 --no-lint",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

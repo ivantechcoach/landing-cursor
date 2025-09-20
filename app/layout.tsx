@@ -85,8 +85,15 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
   // Determine language from URL or default to Spanish
   const locale = params?.locale || 'es';
   
+  // Map locale to proper HTML lang attribute
+  const htmlLang = {
+    'es': 'es-ES',
+    'en': 'en-US', 
+    'cat': 'ca-ES'
+  }[locale] || 'es-ES';
+  
   return (
-    <html lang={locale} className="scroll-smooth">
+    <html lang={htmlLang} className="scroll-smooth">
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -99,7 +106,7 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
       <body className={`${inter.className} antialiased`}>
         <div className="min-h-screen flex flex-col">
           <Header language={locale as 'es' | 'en' | 'cat'} />
-          <main className="flex-1">
+          <main id="main-content" className="flex-1">
             {children}
           </main>
           <Footer language={locale as 'es' | 'en' | 'cat'} />

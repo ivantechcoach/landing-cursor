@@ -2,6 +2,8 @@
  * Footer Component
  * Reusable footer component with links and social media
  */
+'use client';
+
 import Link from 'next/link';
 
 interface FooterProps {
@@ -9,34 +11,42 @@ interface FooterProps {
 }
 
 export default function Footer({ language = 'es' }: FooterProps) {
+  // Get environment variables
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+  const contactPhone = process.env.NEXT_PUBLIC_CONTACT_PHONE;
+  const contactAddress = process.env.NEXT_PUBLIC_CONTACT_ADDRESS;
+
   // Footer content based on language
   const content = {
     es: {
-      title: 'Iván Portfolio',
-      description: 'Desarrollador Full Stack especializado en crear experiencias digitales excepcionales.',
+      title: 'Ivan Tech Coach',
+      description: 'Coaching Tecnológico Profesional - Transforma tu carrera tecnológica con coaching personalizado.',
       quickLinks: 'Enlaces Rápidos',
       contact: 'Contacto',
       followUs: 'Síguenos',
       rights: 'Todos los derechos reservados.',
-      madeBy: 'Hecho por Iván con la ayuda de IA como Gemini y Cursor para demostrar habilidades de Context Engineering y Vibe Coding.',
+      madeBy: 'Hecho por Ivan con la ayuda de IA como Gemini y Cursor para demostrar habilidades de Context Engineering y Vibe Coding.',
+      contactCTA: 'Contáctame',
     },
     en: {
-      title: 'Iván Portfolio',
-      description: 'Full Stack Developer specialized in creating exceptional digital experiences.',
+      title: 'Ivan Tech Coach',
+      description: 'Professional Tech Coaching - Transform your tech career with personalized coaching.',
       quickLinks: 'Quick Links',
       contact: 'Contact',
       followUs: 'Follow Us',
       rights: 'All rights reserved.',
-      madeBy: 'Made by Iván with the help of AI like Gemini and Cursor to demonstrate Context Engineering and Vibe Coding skills.',
+      madeBy: 'Made by Ivan with the help of AI like Gemini and Cursor to demonstrate Context Engineering and Vibe Coding skills.',
+      contactCTA: 'Contact Me',
     },
     cat: {
-      title: 'Iván Portfolio',
-      description: 'Desenvolupador Full Stack especialitzat en crear experiències digitals excepcionals.',
+      title: 'Ivan Tech Coach',
+      description: 'Coaching Tecnològic Professional - Transforma la teva carrera tecnològica amb coaching personalitzat.',
       quickLinks: 'Enllaços Ràpids',
       contact: 'Contacte',
       followUs: 'Segueix-nos',
       rights: 'Tots els drets reservats.',
-      madeBy: 'Fet per Iván amb l\'ajuda d\'IA com Gemini i Cursor per demostrar habilitats de Context Engineering i Vibe Coding.',
+      madeBy: 'Fet per Ivan amb l\'ajuda d\'IA com Gemini i Cursor per demostrar habilitats de Context Engineering i Vibe Coding.',
+      contactCTA: 'Contacta\'m',
     },
   };
 
@@ -150,9 +160,32 @@ export default function Footer({ language = 'es' }: FooterProps) {
           <div>
             <h4 className="text-lg font-semibold mb-4">{currentContent.contact}</h4>
             <div className="space-y-2 text-gray-300">
-              <p>ivan@ejemplo.com</p>
-              <p>+34 123 456 789</p>
-              <p>Barcelona, España</p>
+              {contactEmail ? (
+                <a 
+                  href={`mailto:${contactEmail}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {contactEmail}
+                </a>
+              ) : (
+                <Link 
+                  href={`/${language}/contact`}
+                  className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                >
+                  {currentContent.contactCTA}
+                </Link>
+              )}
+              {contactPhone && (
+                <a 
+                  href={`tel:${contactPhone}`}
+                  className="hover:text-white transition-colors block"
+                >
+                  {contactPhone}
+                </a>
+              )}
+              {contactAddress && (
+                <p>{contactAddress}</p>
+              )}
             </div>
           </div>
         </div>
