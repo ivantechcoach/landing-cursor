@@ -174,12 +174,43 @@ npm run lint
 npm run type-check
 ```
 
-## 🚀 Despliegue
+## 🚀 Despliegue en Vercel
 
-### Vercel (Recomendado)
-1. Conecta tu repositorio con Vercel
-2. Configura las variables de entorno si es necesario
-3. Despliega automáticamente
+### Opción A (Recomendada): Mantener lockfile sincronizado
+**Prioridad:** Mantener `pnpm-lock.yaml` siempre sincronizado con `package.json`
+
+1. **Antes de cada push**, asegúrate de que el lockfile esté actualizado:
+   ```bash
+   # Si agregaste/eliminaste dependencias, regenera el lockfile
+   rm pnpm-lock.yaml
+   pnpm install
+   git add pnpm-lock.yaml
+   git commit -m "chore(ci): sync pnpm-lock.yaml con package.json"
+   ```
+
+2. **Conecta tu repositorio con Vercel**
+3. **Configura las variables de entorno** si es necesario
+4. **Despliega automáticamente** - Vercel usará el lockfile sincronizado
+
+### Opción B (Emergencia): Fallback con --no-frozen-lockfile
+**Uso:** Solo cuando el lockfile esté desfasado y necesites desplegar urgentemente
+
+El proyecto incluye `vercel.json` con configuración de fallback:
+```json
+{
+  "installCommand": "pnpm install --no-frozen-lockfile"
+}
+```
+
+**⚠️ Importante:** Esta opción regenera el lockfile en Vercel, lo que puede causar:
+- Builds inconsistentes entre entornos
+- Dependencias diferentes en producción vs desarrollo
+- Posibles errores de runtime
+
+**Solución post-deployment:**
+1. Después del despliegue exitoso, sincroniza el lockfile localmente
+2. Haz commit del lockfile actualizado
+3. Los siguientes despliegues usarán la Opción A (recomendada)
 
 ### Otras plataformas
 - **Netlify**: Compatible con Next.js
