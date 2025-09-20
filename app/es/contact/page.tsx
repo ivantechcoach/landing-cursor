@@ -1,8 +1,10 @@
+'use client';
+
 /**
  * Página de Contacto - Español
  * Ruta: /es/contact
+ * Note: This page is client-side, so metadata is handled by the layout
  */
-'use client';
 
 export default function ContactPageES() {
   // Get environment variables

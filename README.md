@@ -1,249 +1,299 @@
-# Personal Branding Portfolio
+# 🚀 Ivan Tech Coach - Portfolio Profesional
 
-Un portfolio personal multilingüe construido con Next.js 14, TypeScript y Tailwind CSS. Este proyecto utiliza el App Router de Next.js y soporta tres idiomas: español, inglés y catalán.
+**Coaching Tecnológico Profesional** - Transforma tu carrera tecnológica con coaching personalizado.
 
-## 🚀 Características
+## ✨ Características Principales
 
-- **Multilingüe**: Soporte para español (ES), inglés (EN) y catalán (CAT)
-- **App Router**: Utiliza el nuevo sistema de enrutamiento de Next.js 14
-- **TypeScript**: Tipado estático para mayor robustez
-- **Tailwind CSS**: Estilos modernos y responsivos
-- **SEO Optimizado**: Meta tags y estructura optimizada para motores de búsqueda
-- **Accesibilidad**: Componentes accesibles y semánticamente correctos
-- **Performance**: Optimizado para velocidad y Core Web Vitals
+- **🌐 Multilingüe**: Español, Inglés y Catalán
+- **♿ Accesibilidad**: WCAG 2.1 AA compliant
+- **📱 Responsive**: Mobile-first design
+- **⚡ Performance**: Core Web Vitals optimizados
+- **🔍 SEO**: Meta tags y sitemap automático
+- **🎨 Moderno**: Tailwind CSS + Next.js 14
+- **🚀 Optimizado**: Sin efectos innecesarios, rendimiento máximo
 
-## 📁 Estructura del Proyecto
+## 📁 Architecture
+
+### Component Structure
 
 ```
-├── app/
-│   ├── (es)/                 # Rutas en español
-│   │   ├── page.tsx         # Página de inicio
-│   │   ├── about/           # Acerca de
-│   │   ├── services/        # Servicios
-│   │   ├── portfolio/       # Portfolio
-│   │   ├── blog/           # Blog
-│   │   └── contact/        # Contacto
-│   ├── (en)/                 # Rutas en inglés
-│   │   ├── page.tsx
-│   │   ├── about/
-│   │   ├── services/
-│   │   ├── portfolio/
-│   │   ├── blog/
-│   │   └── contact/
-│   ├── (cat)/                # Rutas en catalán
-│   │   ├── page.tsx
-│   │   ├── about/
-│   │   ├── services/
-│   │   ├── portfolio/
-│   │   ├── blog/
-│   │   └── contact/
-│   ├── globals.css          # Estilos globales
-│   └── layout.tsx           # Layout principal
-├── components/
-│   ├── Header.tsx           # Componente de navegación
-│   └── Footer.tsx           # Componente de pie de página
-├── public/                  # Archivos estáticos
-├── package.json
-├── next.config.js
-├── tailwind.config.js
-├── tsconfig.json
-└── README.md
+components/
+├── Header.tsx              # Navigation with language switcher
+├── Hero.tsx                # Main hero section (refactored)
+├── HeroContent.tsx         # Hero content with CTAs
+├── Footer.tsx              # Site footer
+├── Testimonials.tsx        # Customer testimonials
+└── sections/
+    ├── FinalCTASection.tsx # Call-to-action section
+    └── WhyChooseSection.tsx # Why choose us section
 ```
 
-## 🛠️ Tecnologías Utilizadas
+### Design System
 
-- **Next.js 14**: Framework de React con App Router
-- **React 18**: Biblioteca de interfaz de usuario
-- **TypeScript**: Superset tipado de JavaScript
-- **Tailwind CSS**: Framework de CSS utilitario
-- **ESLint**: Linter para JavaScript/TypeScript
-- **PostCSS**: Procesador de CSS
-
-## 🚀 Instalación y Configuración
-
-### Prerrequisitos
-
-- Node.js 18.0.0 o superior
-- npm, yarn o pnpm
-
-### Instalación
-
-1. **Clona el repositorio**
-   ```bash
-   git clone <tu-repositorio>
-   cd personal-branding-portfolio
-   ```
-
-2. **Instala las dependencias**
-   ```bash
-   npm install
-   # o
-   yarn install
-   # o
-   pnpm install
-   ```
-
-3. **Ejecuta el servidor de desarrollo**
-   ```bash
-   npm run dev
-   # o
-   yarn dev
-   # o
-   pnpm dev
-   ```
-
-4. **Abre tu navegador**
-   Navega a [http://localhost:3000](http://localhost:3000)
-
-## 🌐 Rutas Disponibles
-
-### Español (ES)
-- `/es` - Página de inicio
-- `/es/about` - Acerca de
-- `/es/services` - Servicios
-- `/es/portfolio` - Portfolio
-- `/es/blog` - Blog
-- `/es/contact` - Contacto
-
-### Inglés (EN)
-- `/en` - Home page
-- `/en/about` - About
-- `/en/services` - Services
-- `/en/portfolio` - Portfolio
-- `/en/blog` - Blog
-- `/en/contact` - Contact
-
-### Catalán (CAT)
-- `/cat` - Pàgina d'inici
-- `/cat/about` - Sobre mi
-- `/cat/services` - Serveis
-- `/cat/portfolio` - Portfolio
-- `/cat/blog` - Blog
-- `/cat/contact` - Contacte
-
-## 🎨 Personalización
-
-### Colores
-Los colores se pueden personalizar en `tailwind.config.js`:
-
-```javascript
-theme: {
-  extend: {
-    colors: {
-      primary: {
-        // Tus colores personalizados
-      }
-    }
-  }
-}
+```
+lib/
+├── design-tokens.ts        # Centralized design tokens
+├── i18n.ts                # Internationalization utilities
+├── translations.ts         # Translation dictionaries
+├── seo.ts                 # SEO metadata management
+└── hooks/
+    └── useLocaleSwitcher.ts # Locale switching hook
 ```
 
-### Contenido
-- Edita los archivos de página en `app/(idioma)/`
-- Modifica los componentes en `components/`
-- Actualiza los metadatos en `app/layout.tsx`
+### Page Structure
 
-### Estilos
-- Estilos globales en `app/globals.css`
-- Componentes personalizados usando clases de Tailwind
-- Animaciones personalizadas definidas en CSS
+```
+app/
+├── layout.tsx             # Root layout
+├── page.tsx               # Homepage (redirects to /es)
+├── es/                    # Spanish pages
+├── en/                    # English pages
+└── cat/                   # Catalan pages
+```
 
-## 📱 Responsive Design
+## 🎨 Design Tokens
 
-El proyecto está optimizado para todos los dispositivos:
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
+The project uses a centralized design token system for consistency and maintainability:
 
-## 🔧 Scripts Disponibles
+### Colors
+- **Primary**: Blue scale (50-950)
+- **Secondary**: Green scale (50-950) 
+- **CTA**: High contrast green (#016A3A) for accessibility
+- **Neutral**: Gray scale (50-950)
+- **Semantic**: Success, warning, error, info
 
+### Typography
+- **Font Family**: Inter (primary), JetBrains Mono (monospace)
+- **Scale**: Optimized for 40+/60+ readability
+- **Line Heights**: Comfortable spacing (1.1-1.8)
+
+### Spacing
+- **Base Unit**: 8px for consistent vertical rhythm
+- **Scale**: 0-64 (0-256px)
+
+## 🌍 Internationalization (i18n)
+
+### Supported Locales
+- **ES** (Spanish) - Default
+- **EN** (English)
+- **CAT** (Catalan)
+
+### Features
+- Automatic locale detection from URL
+- Preserved navigation state during language switching
+- SEO-optimized metadata for each locale
+- Hreflang tags for search engines
+
+### Adding New Translations
+
+1. **Update translation dictionaries** in `lib/translations.ts`:
+```typescript
+export const translations: Record<Locale, Translations> = {
+  es: { /* Spanish translations */ },
+  en: { /* English translations */ },
+  cat: { /* Catalan translations */ },
+  // Add new locale here
+};
+```
+
+2. **Add locale to i18n configuration** in `lib/i18n.ts`:
+```typescript
+export const LOCALES: Locale[] = ['es', 'en', 'cat', 'new-locale'];
+```
+
+3. **Create page structure** in `app/new-locale/`
+
+## ♿ Accessibility Features
+
+### AA+ Compliance
+- **Color Contrast**: All text meets WCAG AA+ standards
+- **Focus Management**: Visible focus indicators on all interactive elements
+- **Keyboard Navigation**: Full keyboard accessibility
+- **Screen Reader Support**: Proper ARIA labels and semantic HTML
+
+### Reduced Motion Support
+- Respects `prefers-reduced-motion` setting
+- Subtle animations for users with motion sensitivity
+- CSS media queries for motion preferences
+
+### Focus Management
+- Skip links for keyboard users
+- `aria-current="page"` for active navigation items
+- Focus restoration after locale switching
+
+## ⚡ Performance Optimizations
+
+### Image Optimization
+- **WebP Format**: All images converted to WebP
+- **Lazy Loading**: Non-critical images load on demand
+- **Responsive Images**: Proper `sizes` attributes
+- **Priority Loading**: Hero images load immediately
+
+### CLS Prevention
+- **Fixed Heights**: Components have predefined dimensions
+- **Layout Containment**: CSS `contain` property for performance
+- **Transform Optimization**: Hardware acceleration for animations
+
+### Core Web Vitals
+- **LCP**: Optimized hero image loading
+- **FID**: Minimal JavaScript execution
+- **CLS**: Zero layout shift with fixed dimensions
+
+## 🛠️ Development Guide
+
+### Prerequisites
+- Node.js 18+
+- pnpm (recommended package manager)
+
+### Installation
 ```bash
-# Desarrollo
-npm run dev
+# Install dependencies
+pnpm install
 
-# Construcción para producción
-npm run build
+# Start development server
+pnpm dev
 
-# Iniciar servidor de producción
-npm run start
+# Build for production
+pnpm build
 
-# Linting
-npm run lint
-
-# Verificación de tipos
-npm run type-check
+# Start production server
+pnpm start
 ```
 
-## 🚀 Despliegue en Vercel
+### Adding New Components
 
-### Opción A (Recomendada): Mantener lockfile sincronizado
-**Prioridad:** Mantener `pnpm-lock.yaml` siempre sincronizado con `package.json`
+1. **Create component file** in `components/`
+2. **Use design tokens** from `lib/design-tokens.ts`
+3. **Add TypeScript interfaces** for props
+4. **Include accessibility attributes** (ARIA labels, focus management)
+5. **Test with keyboard navigation**
 
-1. **Antes de cada push**, asegúrate de que el lockfile esté actualizado:
-   ```bash
-   # Si agregaste/eliminaste dependencias, regenera el lockfile
-   rm pnpm-lock.yaml
-   pnpm install
-   git add pnpm-lock.yaml
-   git commit -m "chore(ci): sync pnpm-lock.yaml con package.json"
-   ```
+### Adding New Sections
 
-2. **Conecta tu repositorio con Vercel**
-3. **Configura las variables de entorno** si es necesario
-4. **Despliega automáticamente** - Vercel usará el lockfile sincronizado
+1. **Create section component** in `components/sections/`
+2. **Add translations** for all supported locales
+3. **Include in page layouts** as needed
+4. **Test responsive design** across breakpoints
 
-### Opción B (Emergencia): Fallback con --no-frozen-lockfile
-**Uso:** Solo cuando el lockfile esté desfasado y necesites desplegar urgentemente
+### Modifying the Hero Section
 
-El proyecto incluye `vercel.json` con configuración de fallback:
-```json
-{
-  "installCommand": "pnpm install --no-frozen-lockfile"
-}
+The Hero section is modular and consists of:
+
+- **Header**: Navigation and language switcher
+- **Hero**: Main hero section with background
+- **HeroContent**: Main content with CTAs
+
+To modify:
+1. **Update HeroContent.tsx** for text changes
+2. **Modify Hero.tsx** for background and styling adjustments
+3. **Edit design tokens** for styling changes
+
+## 🧪 Testing
+
+### Accessibility Testing
+```bash
+# Run accessibility tests
+pnpm test:a11y
+
+# Test keyboard navigation
+pnpm test:keyboard
+
+# Test with screen reader
+pnpm test:screen-reader
 ```
 
-**⚠️ Importante:** Esta opción regenera el lockfile en Vercel, lo que puede causar:
-- Builds inconsistentes entre entornos
-- Dependencias diferentes en producción vs desarrollo
-- Posibles errores de runtime
+### Performance Testing
+```bash
+# Lighthouse audit
+pnpm test:lighthouse
 
-**Solución post-deployment:**
-1. Después del despliegue exitoso, sincroniza el lockfile localmente
-2. Haz commit del lockfile actualizado
-3. Los siguientes despliegues usarán la Opción A (recomendada)
+# Core Web Vitals
+pnpm test:web-vitals
+```
 
-### Otras plataformas
-- **Netlify**: Compatible con Next.js
-- **AWS Amplify**: Soporte completo
-- **Docker**: Incluye Dockerfile si es necesario
+### i18n Testing
+```bash
+# Test all locales
+pnpm test:i18n
 
-## 📈 SEO y Performance
+# Test locale switching
+pnpm test:locale-switch
+```
 
-- Meta tags optimizados para cada página
-- Open Graph y Twitter Cards
-- Sitemap automático
-- Optimización de imágenes
-- Lazy loading
-- Core Web Vitals optimizados
+## 📦 Deployment
 
-## 🤝 Contribución
+### Vercel (Recommended)
+1. Connect repository to Vercel
+2. Configure build settings:
+   - Build Command: `pnpm build`
+   - Output Directory: `.next`
+3. Set environment variables if needed
+4. Deploy
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+### Environment Variables
+```env
+# Optional: Google Analytics
+NEXT_PUBLIC_GA_ID=your-ga-id
 
-## 📄 Licencia
+# Optional: Contact form endpoint
+CONTACT_FORM_ENDPOINT=your-endpoint
+```
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+## 🔧 Maintenance
 
-## 📞 Contacto
+### Regular Tasks
+- **Update dependencies** monthly
+- **Run accessibility audits** before releases
+- **Test all locales** after content changes
+- **Monitor Core Web Vitals** in production
 
-- **Email**: Configura NEXT_PUBLIC_CONTACT_EMAIL en .env.local
-- **LinkedIn**: [Tu perfil de LinkedIn](https://linkedin.com/in/tu-perfil)
-- **GitHub**: [Tu perfil de GitHub](https://github.com/tu-usuario)
+### Content Updates
+1. **Text changes**: Update `lib/translations.ts`
+2. **Images**: Replace in `public/images/` (use WebP format)
+3. **SEO**: Modify `lib/seo.ts` for metadata changes
+4. **Styling**: Update `lib/design-tokens.ts` for design changes
+
+### Troubleshooting
+
+#### Common Issues
+- **Layout shift**: Check for missing fixed heights
+- **Accessibility errors**: Verify ARIA labels and focus management
+- **Performance issues**: Optimize images and check bundle size
+- **i18n problems**: Ensure all locales have complete translations
+
+#### Debug Tools
+- **React DevTools**: Component inspection
+- **Lighthouse**: Performance and accessibility audit
+- **axe DevTools**: Accessibility testing
+- **Next.js Analytics**: Performance monitoring
+
+## 📚 Resources
+
+### Documentation
+- [Next.js 14 Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [Web Vitals](https://web.dev/vitals/)
+
+### Tools
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse)
+- [axe DevTools](https://www.deque.com/axe/devtools/)
+- [WebP Converter](https://cloudconvert.com/webp-converter)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make changes following the architecture guidelines
+4. Test thoroughly (accessibility, performance, i18n)
+5. Submit a pull request
+
+## 📄 License
+
+This project is proprietary software. All rights reserved.
 
 ---
 
-¡Gracias por usar este template! Si te gusta, considera darle una ⭐ en GitHub.
+**Last Updated**: December 2024  
+**Version**: 1.0  
+**Maintainer**: Ivan Tech Coach Development Team

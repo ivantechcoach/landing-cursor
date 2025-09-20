@@ -3,12 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3001",
-    "dev:open": "concurrently --kill-others-on-fail \"next dev --port 3001\" \"powershell -Command Start-Sleep 5; Start-Process http://localhost:3001\"",
-    "dev:clean": "next dev --port 3001 --no-lint",
-    "build": "next build",
+    "setup-port": "node scripts/setup-port.js",
+    "detect-port": "node scripts/detect-running-port.js",
+    "clean": "node scripts/clean-restart.js",
+    "dev": "npm run setup-port && next dev --port 3000",
+    "dev:open": "npm run setup-port && concurrently --kill-others-on-fail \"next dev --port 3000\" \"powershell -Command Start-Sleep 5; Start-Process http://localhost:3000\"",
+    "dev:clean": "npm run clean && npm run setup-port && next dev --port 3000 --no-lint",
+    "dev:auto": "npm run detect-port && next dev --port 3000",
+    "dev:fresh": "npm run clean && npm run setup-port && next dev --port 3000",
+    "build": "npm run setup-port && next build",
+    "build:clean": "npm run clean && npm run setup-port && next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

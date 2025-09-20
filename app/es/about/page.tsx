@@ -2,6 +2,11 @@
  * Página Acerca de - Español
  * Ruta: /es/about
  */
+import type { Metadata } from 'next';
+import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = generateSEOMetadata('es', 'about');
+
 export default function AboutPageES() {
   return (
     <main className="min-h-screen">

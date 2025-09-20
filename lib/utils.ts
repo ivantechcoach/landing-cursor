@@ -4,6 +4,7 @@
 
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { detectPort, getBaseUrl, getPortString } from './portDetector';
 
 /**
  * Combines class names using clsx and tailwind-merge
@@ -166,4 +167,28 @@ export function getLanguageName(lang: 'es' | 'en' | 'cat'): string {
  */
 export function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Gets the current port being used by the development server
+ * @returns Port number as string
+ */
+export function getCurrentPort(): string {
+  return getPortString();
+}
+
+/**
+ * Gets the current base URL for the application
+ * @returns Base URL string
+ */
+export function getCurrentBaseUrl(): string {
+  return getBaseUrl();
+}
+
+/**
+ * Gets port detection information
+ * @returns Port detection result with source information
+ */
+export function getPortInfo() {
+  return detectPort();
 }
