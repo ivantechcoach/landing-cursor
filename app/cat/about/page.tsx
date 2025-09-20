@@ -2,6 +2,11 @@
  * Pàgina Sobre mi - Català
  * Ruta: /cat/about
  */
+import type { Metadata } from 'next';
+import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = generateSEOMetadata('cat', 'about');
+
 export default function AboutPageCAT() {
   return (
     <main className="min-h-screen">

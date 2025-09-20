@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Performance optimizations
+  experimental: {
+    optimizePackageImports: ['@/components', '@/lib'],
+  },
+  
   // Image optimization
   images: {
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60,
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,33 +25,53 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-    formats: ['image/webp', 'image/avif'],
+  },
+  
+  // Compiler optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
   
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
-  
-  // Build optimizations
   swcMinify: true,
   
-  // Environment variables
-  env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
+  // Webpack optimizations
+  webpack: (config, { dev, isServer }) => {
+    // Optimize for development
+    if (dev) {
+      config.watchOptions = {
+        poll: 1000,
+        aggregateTimeout: 300,
+      };
+    }
+    
+    // Optimize bundle size
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+    
+    return config;
   },
   
-  // Redirects for SEO - Removed to avoid conflict with app/page.tsx
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/',
-  //       destination: '/es',
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
+  // Redirects for SEO and multilingual support
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/es',
+        permanent: true,
+      },
+    ];
+  },
   
-  // Headers for security
+  // Headers for security and caching
   async headers() {
     return [
       {
@@ -59,6 +88,24 @@ const nextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin',
+          },
+        ],
+      },
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/styles/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },

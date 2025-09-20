@@ -187,7 +187,9 @@ export default function Testimonials({ language = 'es' }: TestimonialsProps) {
           alt="Testimonials background"
           fill
           className="object-cover opacity-10"
-          quality={80}
+          quality={75}
+          loading="lazy"
+          sizes="100vw"
         />
       </div>
 

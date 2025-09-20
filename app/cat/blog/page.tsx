@@ -2,6 +2,11 @@
  * Pàgina de Blog - Català
  * Ruta: /cat/blog
  */
+import type { Metadata } from 'next';
+import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = generateSEOMetadata('cat', 'blog');
+
 export default function BlogPageCAT() {
   return (
     <main className="min-h-screen">

@@ -97,3 +97,21 @@ export function getLocaleDisplayName(locale: Locale): string {
 export function getLocaleShortCode(locale: Locale): string {
   return locale.toUpperCase();
 }
+
+/**
+ * Build localized link with current locale
+ * @param pathname - Current pathname
+ * @param targetPath - Target path (e.g., '/about', '/contact')
+ * @param hash - Optional hash fragment
+ * @param search - Optional search params
+ * @returns Localized link
+ */
+export function buildLocalizedLink(
+  pathname: string,
+  targetPath: string,
+  hash?: string,
+  search?: string
+): string {
+  const currentLocale = getLocaleFromPathname(pathname);
+  return buildLocalizedPath(currentLocale, targetPath, hash, search);
+}

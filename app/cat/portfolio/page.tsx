@@ -2,6 +2,11 @@
  * Pàgina de Portfolio - Català
  * Ruta: /cat/portfolio
  */
+import type { Metadata } from 'next';
+import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = generateSEOMetadata('cat', 'portfolio');
+
 export default function PortfolioPageCAT() {
   return (
     <main className="min-h-screen">

@@ -2,28 +2,93 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom focus styles for better accessibility */
+/* Design Token System - Centralized styles for consistency and maintainability */
 @layer utilities {
+  /* Focus Styles - AA+ compliant */
   .focus-visible-ring {
     @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
   }
   
-  /* Header navigation focus styles */
+  /* Header Navigation Focus Styles */
   .header-focus {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-opacity-75;
   }
   
   .header-link-focus {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-blue-50 focus-visible:text-blue-700;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-blue-50 focus-visible:text-blue-700 focus-visible:ring-opacity-75;
   }
   
   .header-button-focus {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-blue-600 focus-visible:text-white;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-blue-600 focus-visible:text-white focus-visible:ring-opacity-75;
   }
   
-  /* Skip link styles */
+  /* Skip Link - Enhanced visibility for accessibility */
   .skip-link {
-    @apply absolute -top-full left-4 z-[60] bg-blue-600 text-white px-4 py-2 rounded-md font-medium transition-all duration-200 focus:top-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2;
+    @apply absolute -top-full left-4 z-[60] bg-blue-600 text-white px-4 py-2 rounded-md font-medium transition-all duration-200 focus:top-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2 focus-visible:ring-opacity-75;
+  }
+  
+  /* Hero CTA Focus Styles - High contrast for dark backgrounds */
+  .hero-cta-focus {
+    @apply focus:outline-none focus-visible:ring-4 focus-visible:ring-[#016A3A]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900;
+  }
+  
+  .hero-secondary-cta-focus {
+    @apply focus:outline-none focus-visible:ring-4 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900;
+  }
+  
+  /* Design Token Utilities - Using centralized tokens */
+  .text-display {
+    @apply text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight;
+  }
+  
+  .text-heading-1 {
+    @apply text-3xl sm:text-4xl font-bold leading-tight;
+  }
+  
+  .text-heading-2 {
+    @apply text-2xl sm:text-3xl font-semibold leading-snug;
+  }
+  
+  .text-heading-3 {
+    @apply text-xl sm:text-2xl font-semibold leading-snug;
+  }
+  
+  .text-body-large {
+    @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl leading-relaxed;
+  }
+  
+  .text-body {
+    @apply text-base leading-relaxed;
+  }
+  
+  .text-body-small {
+    @apply text-sm leading-normal;
+  }
+  
+  /* Spacing Utilities - 8px base unit for vertical rhythm */
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+  
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .content-max-width {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  
+  /* Smooth scroll behavior for hero section */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
   
   /* Ensure focus is visible even with reduced motion */
@@ -51,53 +116,6 @@
   }
 }
 
-/* Wave animation styles */
-@layer components {
-  .wave-path {
-    transform-origin: center;
-    will-change: transform;
-  }
-  
-  /* Smooth wave animation - only when motion is not reduced */
-  @media (prefers-reduced-motion: no-preference) {
-    .wave-path {
-      animation: waveFloat 3s ease-in-out infinite;
-    }
-  }
-  
-  /* Reduced motion - subtle animation or no animation */
-  @media (prefers-reduced-motion: reduce) {
-    .wave-path {
-      animation: waveFloatReduced 6s ease-in-out infinite;
-    }
-  }
-  
-  /* Keyframes for smooth wave animation */
-  @keyframes waveFloat {
-    0%, 100% {
-      transform: translateX(0) translateY(0) scale(1);
-    }
-    25% {
-      transform: translateX(-2px) translateY(-1px) scale(1.001);
-    }
-    50% {
-      transform: translateX(0) translateY(-2px) scale(1.002);
-    }
-    75% {
-      transform: translateX(2px) translateY(-1px) scale(1.001);
-    }
-  }
-  
-  /* Reduced motion keyframes - much more subtle */
-  @keyframes waveFloatReduced {
-    0%, 100% {
-      transform: translateX(0) translateY(0);
-    }
-    50% {
-      transform: translateX(0) translateY(-0.5px);
-    }
-  }
-}
 
 /* Custom CSS Variables */
 :root {
@@ -162,6 +180,23 @@ a {
   
   .text-gradient {
     @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  /* Brand Color Gradients */
+  .brand-gradient-mint {
+    @apply bg-gradient-to-r from-[#66FFCC] to-[#99FFDD];
+  }
+  
+  .brand-gradient-ocean {
+    @apply bg-gradient-to-r from-[#0ea5e9] to-[#66FFCC];
+  }
+  
+  .brand-gradient-deep {
+    @apply bg-gradient-to-r from-[#1e40af] to-[#3b82f6];
+  }
+  
+  .text-gradient-brand {
+    @apply bg-gradient-to-r from-[#66FFCC] to-[#0ea5e9] bg-clip-text text-transparent;
   }
 }
 
@@ -234,7 +269,7 @@ a {
   animation: fadeInRight 0.6s ease-out;
 }
 
-/* Responsive Design Helpers */
+  /* Responsive Design Helpers */
 @media (max-width: 640px) {
   .container {
     padding-left: 1rem;

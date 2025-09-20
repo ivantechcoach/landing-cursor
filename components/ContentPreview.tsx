@@ -2,15 +2,18 @@
  * Content Preview Component
  * Shows previews of blog posts and portfolio projects
  * Optimized for lead generation and engagement
+ * Server Component - receives pathname as prop
  */
 import Link from 'next/link';
 import Image from 'next/image';
+import { buildLocalizedLink } from '@/lib/i18n';
 
 interface ContentPreviewProps {
   language?: 'es' | 'en' | 'cat';
+  pathname: string;
 }
 
-export default function ContentPreview({ language = 'es' }: ContentPreviewProps) {
+export default function ContentPreview({ language = 'es', pathname }: ContentPreviewProps) {
   // Content based on language
   const content = {
     es: {
@@ -233,7 +236,7 @@ export default function ContentPreview({ language = 'es' }: ContentPreviewProps)
                   </div>
                   
                   <h3 className="text-xl font-semibold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
-                    <Link href={`/${language}/blog/${post.slug}`}>
+                    <Link href={buildLocalizedLink(pathname, `/blog/${post.slug}`)}>
                       {post.title}
                     </Link>
                   </h3>
@@ -243,7 +246,7 @@ export default function ContentPreview({ language = 'es' }: ContentPreviewProps)
                   </p>
                   
                   <Link
-                    href={`/${language}/blog/${post.slug}`}
+                    href={buildLocalizedLink(pathname, `/blog/${post.slug}`)}
                     className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
                   >
                     Leer más
@@ -257,7 +260,7 @@ export default function ContentPreview({ language = 'es' }: ContentPreviewProps)
 
             <div className="mt-8">
               <Link
-                href={`/${language}/blog`}
+                href={buildLocalizedLink(pathname, '/blog')}
                 className="inline-flex items-center px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
               >
                 {currentContent.blog.cta}
@@ -314,7 +317,7 @@ export default function ContentPreview({ language = 'es' }: ContentPreviewProps)
                       </div>
                       
                       <Link
-                        href={`/${language}/portfolio`}
+                        href={buildLocalizedLink(pathname, '/portfolio')}
                         className="text-blue-600 hover:text-blue-800 font-medium text-sm"
                       >
                         Ver detalles
@@ -327,7 +330,7 @@ export default function ContentPreview({ language = 'es' }: ContentPreviewProps)
 
             <div className="mt-8">
               <Link
-                href={`/${language}/portfolio`}
+                href={buildLocalizedLink(pathname, '/portfolio')}
                 className="inline-flex items-center px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
               >
                 {currentContent.portfolio.cta}
