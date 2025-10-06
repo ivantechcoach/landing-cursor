@@ -1,63 +1,62 @@
 /**
  * Footer Component
- * Reusable footer component with links and social media
+ * Minimal footer with social media, copyright and legal links only
  */
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { buildLocalizedLink } from '@/lib/i18n';
-import { getNavigationItems } from '@/lib/translations';
 import { useLocaleSwitcher } from '@/lib/hooks/useLocaleSwitcher';
 
 interface FooterProps {
-  language?: 'es' | 'en' | 'cat';
+  language?: 'ca' | 'es' | 'en';
 }
 
-export default function Footer({ language = 'es' }: FooterProps) {
+export default function Footer({ language = 'ca' }: FooterProps) {
   const pathname = usePathname();
   const { getCurrentLocale } = useLocaleSwitcher();
   
-  // Get current locale and navigation
+  // Get current locale
   const currentLocale = getCurrentLocale();
-  const currentLinks = getNavigationItems(currentLocale);
   
-  // Get environment variables
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
-  const contactPhone = process.env.NEXT_PUBLIC_CONTACT_PHONE;
-  const contactAddress = process.env.NEXT_PUBLIC_CONTACT_ADDRESS;
-
   // Footer content based on language
   const content = {
+    ca: {
+      title: 'Ivan Tech Coach',
+      description: 'Coaching Tecnològic Professional - Transforma la teva carrera tecnològica amb coaching personalitzat.',
+      followUs: 'Segueix-nos',
+      rights: 'Tots els drets reservats.',
+      madeBy: 'Fet per Ivan amb l\'ajuda d\'IA com Gemini i Cursor per demostrar habilitats de Context Engineering i Vibe Coding.',
+      legal: {
+        privacy: 'Política de privacitat',
+        cookies: 'Política de cookies',
+        terms: 'Termes d\'ús'
+      }
+    },
     es: {
       title: 'Ivan Tech Coach',
       description: 'Coaching Tecnológico Profesional - Transforma tu carrera tecnológica con coaching personalizado.',
-      quickLinks: 'Enlaces Rápidos',
-      contact: 'Contacto',
       followUs: 'Síguenos',
       rights: 'Todos los derechos reservados.',
       madeBy: 'Hecho por Ivan con la ayuda de IA como Gemini y Cursor para demostrar habilidades de Context Engineering y Vibe Coding.',
-      contactCTA: 'Contáctame',
+      legal: {
+        privacy: 'Política de privacidad',
+        cookies: 'Política de cookies',
+        terms: 'Términos de uso'
+      }
     },
     en: {
       title: 'Ivan Tech Coach',
       description: 'Professional Tech Coaching - Transform your tech career with personalized coaching.',
-      quickLinks: 'Quick Links',
-      contact: 'Contact',
       followUs: 'Follow Us',
       rights: 'All rights reserved.',
       madeBy: 'Made by Ivan with the help of AI like Gemini and Cursor to demonstrate Context Engineering and Vibe Coding skills.',
-      contactCTA: 'Contact Me',
-    },
-    cat: {
-      title: 'Ivan Tech Coach',
-      description: 'Coaching Tecnològic Professional - Transforma la teva carrera tecnològica amb coaching personalitzat.',
-      quickLinks: 'Enllaços Ràpids',
-      contact: 'Contacte',
-      followUs: 'Segueix-nos',
-      rights: 'Tots els drets reservats.',
-      madeBy: 'Fet per Ivan amb l\'ajuda d\'IA com Gemini i Cursor per demostrar habilitats de Context Engineering i Vibe Coding.',
-      contactCTA: 'Contacta\'m',
+      legal: {
+        privacy: 'Privacy Policy',
+        cookies: 'Cookie Policy',
+        terms: 'Terms of Use'
+      }
     },
   };
 
@@ -65,15 +64,20 @@ export default function Footer({ language = 'es' }: FooterProps) {
 
   return (
     <footer className="bg-gray-900 text-white" role="contentinfo">
-      <div className="content-max-width container-padding py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="content-max-width container-padding py-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {/* Brand Section */}
-          <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">{currentContent.title}</h3>
-            <p className="text-gray-300 mb-6 max-w-md">
+          <div className="md:col-span-1">
+            <h3 className="text-xl font-bold mb-2">{currentContent.title}</h3>
+            <p className="text-gray-300 text-sm max-w-md">
               {currentContent.description}
             </p>
-            <div className="flex space-x-4" role="list" aria-label="Social media links">
+          </div>
+
+          {/* Social Media */}
+          <div className="md:col-span-1 text-center">
+            <h4 className="text-sm font-semibold mb-3 text-gray-400">{currentContent.followUs}</h4>
+            <div className="flex justify-center space-x-4" role="list" aria-label="Social media links">
               <a
                 href="https://linkedin.com/in/ivan-profile"
                 target="_blank"
@@ -110,87 +114,42 @@ export default function Footer({ language = 'es' }: FooterProps) {
                   <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                 </svg>
               </a>
-              <a
-                href="https://instagram.com/ivan-username"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
-                aria-label="Instagram - Follow Ivan on Instagram"
-                role="listitem"
-              >
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </a>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">{currentContent.quickLinks}</h4>
-            <ul className="space-y-2">
-              {currentLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={buildLocalizedLink(pathname, link.href)}
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">{currentContent.contact}</h4>
-            <div className="space-y-2 text-gray-300">
-              {contactEmail ? (
-                <a 
-                  href={`mailto:${contactEmail}`}
-                  className="hover:text-white transition-colors"
-                >
-                  {contactEmail}
-                </a>
-              ) : (
-                <Link 
-                  href={`/${language}/contact`}
-                  className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                >
-                  {currentContent.contactCTA}
-                </Link>
-              )}
-              {contactPhone && (
-                <a 
-                  href={`tel:${contactPhone}`}
-                  className="hover:text-white transition-colors block"
-                >
-                  {contactPhone}
-                </a>
-              )}
-              {contactAddress && (
-                <p>{contactAddress}</p>
-              )}
+          {/* Legal Links */}
+          <div className="md:col-span-1">
+            <div className="flex flex-col space-y-2 text-sm">
+              <Link
+                href={buildLocalizedLink(pathname, '/privacy-policy')}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                {currentContent.legal.privacy}
+              </Link>
+              <Link
+                href={buildLocalizedLink(pathname, '/cookie-policy')}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                {currentContent.legal.cookies}
+              </Link>
+              <Link
+                href={buildLocalizedLink(pathname, '/terms-of-use')}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                {currentContent.legal.terms}
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-8">
-          <div className="text-center text-gray-400">
-            <p className="mb-2">&copy; 2024 {currentContent.title}. {currentContent.rights}</p>
-            <p className="text-sm text-gray-500 max-w-4xl mx-auto leading-relaxed mb-4">
-              {currentContent.madeBy}
-            </p>
-            <div className="bg-gray-800/50 rounded-lg p-4 max-w-2xl mx-auto">
-              <p className="text-xs text-gray-400 leading-relaxed">
-                <strong>Transparencia sobre IA:</strong> Este sitio web fue desarrollado con la asistencia de herramientas de IA (Gemini y Cursor) 
-                para demostrar habilidades de Context Engineering y Vibe Coding. El contenido y la estrategia de marca son auténticos y 
-                representan la experiencia real de Ivan como Tech Coach profesional.
-              </p>
-            </div>
-          </div>
+        {/* Copyright */}
+        <div className="mt-8 pt-6 border-t border-gray-800 text-center">
+          <p className="text-gray-400 text-sm">
+            © {new Date().getFullYear()} {currentContent.title}. {currentContent.rights}
+          </p>
+          <p className="text-gray-500 text-xs mt-2">
+            {currentContent.madeBy}
+          </p>
         </div>
       </div>
     </footer>

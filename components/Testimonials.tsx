@@ -6,10 +6,10 @@
 import Image from 'next/image';
 
 interface TestimonialsProps {
-  language?: 'es' | 'en' | 'cat';
+  language?: 'ca' | 'es' | 'en';
 }
 
-export default function Testimonials({ language = 'es' }: TestimonialsProps) {
+export default function Testimonials({ language = 'ca' }: TestimonialsProps) {
   // Testimonials content based on language
   const content = {
     es: {
@@ -120,7 +120,7 @@ export default function Testimonials({ language = 'es' }: TestimonialsProps) {
         }
       ]
     },
-    cat: {
+    ca: {
       title: 'El que diuen els meus clients',
       subtitle: 'Professionals que han transformat les seves carreres amb el meu coaching',
       testimonials: [

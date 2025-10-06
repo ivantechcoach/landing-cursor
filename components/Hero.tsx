@@ -12,7 +12,7 @@ import HeroContent from './HeroContent';
 import WaveTransition from './WaveTransition';
 
 interface HeroProps {
-  language?: 'es' | 'en' | 'cat';
+  language?: 'ca' | 'es' | 'en';
   className?: string;
   backgroundImage?: string;
   backgroundAlt?: string;
@@ -32,7 +32,7 @@ const PatternOverlay = memo(() => (
 PatternOverlay.displayName = 'PatternOverlay';
 
 function Hero({ 
-  language = 'es', 
+  language = 'ca', 
   className = "",
   backgroundImage = "/images/hero/main-hero.webp",
   backgroundAlt = "Professional tech coaching background"

@@ -1,7 +1,7 @@
 /**
- * Home Page - English
- * Route: /en
- * Refactored with modular components for better maintainability
+ * Página de inicio - Català
+ * Ruta: /ca
+ * Refactorizada amb components modulares per millor mantenibilitat
  */
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
@@ -10,22 +10,22 @@ import Testimonials from '@/components/Testimonials';
 import FinalCTASection from '@/components/sections/FinalCTASection';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = generateSEOMetadata('en');
+export const metadata: Metadata = generateSEOMetadata('ca');
 
-export default function HomePageEN() {
+export default function HomePageCA() {
   return (
     <>
       {/* Hero Section */}
-      <Hero language="en" />
+      <Hero language="ca" />
 
       {/* Hero CTA Section - After wave transition */}
-      <HeroCTA language="en" />
+      <HeroCTA language="ca" />
 
       {/* Testimonials Section */}
-      <Testimonials language="en" />
+      <Testimonials language="ca" />
       
       {/* Final CTA Section */}
-      <FinalCTASection language="en" />
+      <FinalCTASection language="ca" />
     </>
   );
 }

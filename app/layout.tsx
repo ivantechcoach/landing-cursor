@@ -6,41 +6,34 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import { Suspense } from 'react';
+import RootLayoutClient from '@/components/RootLayoutClient';
 
 const inter = Inter({ subsets: ['latin'] });
 
-// Root layout metadata - redirects to Spanish version
+// Root layout metadata - redirects to Catalan version
 export const metadata: Metadata = {
-  title: 'Ivan Tech Coach - Coaching Tecnológico Profesional',
-  description: 'Transforma tu carrera tecnológica con coaching personalizado. Aprende las habilidades más demandadas del mercado y acelera tu crecimiento profesional con Ivan Tech Coach.',
+  title: 'Ivan Tech Coach - Coaching Tecnològic Professional',
+  description: 'Transforma la teva carrera tecnològica amb coaching personalitzat. Aprèn les habilitats més demandades del mercat i accelera el teu creixement professional amb Ivan Tech Coach.',
   metadataBase: new URL('https://ivantechcoach.com'),
   alternates: {
-    canonical: '/es',
+    canonical: '/ca',
     languages: {
+      'ca-ES': '/ca',
       'es-ES': '/es',
       'en-US': '/en',
-      'ca-ES': '/cat',
-      'x-default': '/es',
+      'x-default': '/ca',
     },
   },
 };
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: {
-    locale?: string;
-  };
 }
 
-export default function RootLayout({ children, params }: RootLayoutProps) {
-  // Default to Spanish for root layout
-  const locale = 'es';
-  const htmlLang = 'es-ES';
-  
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang={htmlLang} className="scroll-smooth" style={{ scrollBehavior: 'smooth' }}>
+    <html lang="ca-ES" className="scroll-smooth" style={{ scrollBehavior: 'smooth' }}>
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -51,20 +44,18 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         {/* Hreflang tags for root */}
+        <link rel="alternate" hrefLang="ca-ES" href="https://ivantechcoach.com/ca" />
         <link rel="alternate" hrefLang="es-ES" href="https://ivantechcoach.com/es" />
         <link rel="alternate" hrefLang="en-US" href="https://ivantechcoach.com/en" />
-        <link rel="alternate" hrefLang="ca-ES" href="https://ivantechcoach.com/cat" />
-        <link rel="alternate" hrefLang="x-default" href="https://ivantechcoach.com/es" />
+        <link rel="alternate" hrefLang="x-default" href="https://ivantechcoach.com/ca" />
         
       </head>
       <body className={`${inter.className} antialiased`}>
-        <div className="min-h-screen flex flex-col">
-          <Header language={locale as 'es' | 'en' | 'cat'} />
-          <main id="main-content" className="flex-1">
+        <Suspense fallback={<div>Loading...</div>}>
+          <RootLayoutClient>
             {children}
-          </main>
-          <Footer language={locale as 'es' | 'en' | 'cat'} />
-        </div>
+          </RootLayoutClient>
+        </Suspense>
       </body>
     </html>
   );

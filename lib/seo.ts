@@ -20,9 +20,9 @@ export interface SEOMetadata {
   twitterImageAlt: string;
   locale: string;
   alternateUrls: {
+    ca: string;
     es: string;
     en: string;
-    cat: string;
   };
 }
 
@@ -56,9 +56,9 @@ export const seoMetadata: Record<Locale, SEOMetadata> = {
     twitterImageAlt: 'Ivan Tech Coach - Coaching Tecnológico Profesional',
     locale: 'es_ES',
     alternateUrls: {
+      ca: 'https://ivantechcoach.com/ca',
       es: 'https://ivantechcoach.com/es',
-      en: 'https://ivantechcoach.com/en',
-      cat: 'https://ivantechcoach.com/cat'
+      en: 'https://ivantechcoach.com/en'
     }
   },
   en: {
@@ -90,12 +90,12 @@ export const seoMetadata: Record<Locale, SEOMetadata> = {
     twitterImageAlt: 'Ivan Tech Coach - Professional Technology Coaching',
     locale: 'en_US',
     alternateUrls: {
+      ca: 'https://ivantechcoach.com/ca',
       es: 'https://ivantechcoach.com/es',
-      en: 'https://ivantechcoach.com/en',
-      cat: 'https://ivantechcoach.com/cat'
+      en: 'https://ivantechcoach.com/en'
     }
   },
-  cat: {
+  ca: {
     title: 'Ivan Tech Coach - Coaching Tecnològic Professional | Transforma la Teva Carrera',
     description: 'Transforma la teva carrera tecnològica amb coaching personalitzat. Aprèn les habilitats més demandades del mercat i accelera el teu creixement professional amb Ivan Tech Coach. ¡Sessió gratuïta!',
     keywords: [
@@ -124,9 +124,9 @@ export const seoMetadata: Record<Locale, SEOMetadata> = {
     twitterImageAlt: 'Ivan Tech Coach - Coaching Tecnològic Professional',
     locale: 'ca_ES',
     alternateUrls: {
+      ca: 'https://ivantechcoach.com/ca',
       es: 'https://ivantechcoach.com/es',
-      en: 'https://ivantechcoach.com/en',
-      cat: 'https://ivantechcoach.com/cat'
+      en: 'https://ivantechcoach.com/en'
     }
   }
 };
@@ -228,7 +228,7 @@ export function generateMetadata(locale: Locale, page?: string): Metadata {
       languages: {
         'es-ES': seo.alternateUrls.es,
         'en-US': seo.alternateUrls.en,
-        'ca-ES': seo.alternateUrls.cat,
+        'ca-ES': seo.alternateUrls.ca,
       },
     },
     openGraph: {
@@ -276,9 +276,9 @@ export function generateMetadata(locale: Locale, page?: string): Metadata {
  */
 export function getHtmlLang(locale: Locale): string {
   const langMap = {
+    'ca': 'ca-ES',
     'es': 'es-ES',
-    'en': 'en-US',
-    'cat': 'ca-ES'
+    'en': 'en-US'
   };
-  return langMap[locale] || 'es-ES';
+  return langMap[locale] || 'ca-ES';
 }
