@@ -74,11 +74,11 @@ export default function Header({ language = 'es' }: HeaderProps) {
               aria-label={`${currentNav[0].name} — Ivan Tech Coach`}
             >
               <Image
-                src="/images/branding/logo.svg"
-                alt="Ivan Tech Coach Logo"
+                src="/images/about/portrait-ivan.webp"
+                alt="Ivan Tech Coach - Portrait"
                 width={40}
                 height={40}
-                className="w-10 h-10"
+                className="w-10 h-10 rounded-full object-cover border-2 border-blue-600"
                 priority
               />
               <span className="text-2xl font-bold text-gray-900">

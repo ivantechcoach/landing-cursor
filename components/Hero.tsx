@@ -9,6 +9,7 @@
 import Image from 'next/image';
 import { memo } from 'react';
 import HeroContent from './HeroContent';
+import WaveTransition from './WaveTransition';
 
 interface HeroProps {
   language?: 'es' | 'en' | 'cat';
@@ -69,6 +70,12 @@ function Hero({
       <div className="relative z-10 w-full">
         <HeroContent language={language} />
       </div>
+
+      {/* Wave Transition */}
+      <WaveTransition 
+        fillColor="#FFFFFF"
+        height={120}
+      />
     </section>
   );
 }
