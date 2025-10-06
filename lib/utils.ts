@@ -67,7 +67,7 @@ export function formatRelativeTime(date: Date | string, locale: string = 'es-ES'
  */
 export function truncateText(text: string, length: number): string {
   if (text.length <= length) return text;
-  return text.slice(0, length).trim() + '...';
+  return `${text.slice(0, length).trim()}...`;
 }
 
 /**
