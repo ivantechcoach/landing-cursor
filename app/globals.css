@@ -223,6 +223,70 @@ a {
   }
 }
 
+/* Debbie.codes Navbar Styles - Exact replica */
+.navbar-debbie-codes {
+  width: 100%;
+  z-index: 50;
+  transition: all 0.3s ease-out;
+}
+
+/* Initial state - transparent and relative positioned */
+.navbar-debbie-codes.relative {
+  position: relative;
+  background-color: transparent;
+  backdrop-filter: none;
+}
+
+/* Scrolled state - fixed and solid background */
+.navbar-debbie-codes.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Prevent content jumping when navbar becomes fixed */
+body.navbar-fixed {
+  padding-top: 4rem;
+}
+
+/* Text shadows for better readability on transparent background - Debbie.codes style */
+.text-white-shadow {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth transitions for all navbar elements */
+.navbar-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure proper spacing when navbar becomes fixed - Debbie.codes style */
+.navbar-spacer {
+  height: 4rem;
+  transition: height 0.3s ease-out;
+}
+
+.navbar-spacer.compressed {
+  height: 3.5rem;
+}
+
+/* Cookie banner styles */
+.cookie-banner {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 /* Wave Animation Styles */
 .wave-container {
   position: absolute;

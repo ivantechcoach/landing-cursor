@@ -10,7 +10,7 @@ import { getUITranslations } from '@/lib/translations';
 import { useLocaleSwitcher } from '@/lib/hooks/useLocaleSwitcher';
 
 interface WhyChooseSectionProps {
-  language?: 'es' | 'en' | 'cat';
+  language?: 'ca' | 'es' | 'en';
   className?: string;
 }
 
@@ -21,7 +21,7 @@ interface FeatureItem {
   gradient: string;
 }
 
-export default function WhyChooseSection({ language = 'es', className = "" }: WhyChooseSectionProps) {
+export default function WhyChooseSection({ language = 'ca', className = "" }: WhyChooseSectionProps) {
   const { getCurrentLocale } = useLocaleSwitcher();
   const currentLocale = getCurrentLocale();
   const ui = getUITranslations(currentLocale);
@@ -100,7 +100,7 @@ export default function WhyChooseSection({ language = 'es', className = "" }: Wh
         }
       ]
     },
-    cat: {
+    ca: {
       title: 'Per què triar Ivan Tech Coach?',
       subtitle: 'Més de 5 anys ajudant professionals a accelerar les seves carreres tecnològiques',
       features: [

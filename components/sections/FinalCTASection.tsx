@@ -12,11 +12,11 @@ import { buildLocalizedLink } from '@/lib/i18n';
 import { useLocaleSwitcher } from '@/lib/hooks/useLocaleSwitcher';
 
 interface FinalCTASectionProps {
-  language?: 'es' | 'en' | 'cat';
+  language?: 'ca' | 'es' | 'en';
   className?: string;
 }
 
-export default function FinalCTASection({ language = 'es', className = "" }: FinalCTASectionProps) {
+export default function FinalCTASection({ language = 'ca', className = "" }: FinalCTASectionProps) {
   const pathname = usePathname();
   const { getCurrentLocale } = useLocaleSwitcher();
   const currentLocale = getCurrentLocale();
@@ -39,7 +39,7 @@ export default function FinalCTASection({ language = 'es', className = "" }: Fin
       primaryCTAAria: 'Schedule free diagnostic session',
       secondaryCTAAria: 'Learn about Ivan Tech Coach\'s story'
     },
-    cat: {
+    ca: {
       title: 'Llest per donar el següent pas en la teva carrera?',
       subtitle: 'Agenda la teva sessió diagnòstica gratuïta i descobreix com et puc ajudar a aconseguir els teus objectius professionals.',
       primaryCTA: 'Agenda la teva sessió GRATUÏTA',

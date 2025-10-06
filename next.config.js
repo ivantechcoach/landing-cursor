@@ -63,10 +63,11 @@ const nextConfig = {
   // Redirects for SEO and multilingual support
   async redirects() {
     return [
+      // Root redirects to Catalan (default language)
       {
         source: '/',
-        destination: '/es',
-        permanent: true,
+        destination: '/ca',
+        permanent: false,
       },
     ];
   },

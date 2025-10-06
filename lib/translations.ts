@@ -1,6 +1,7 @@
 /**
  * Translation dictionaries for Ivan Tech Coach
  * Centralized translation system for consistent i18n
+ * Catalan as primary language
  */
 
 import { Locale } from './i18n';
@@ -50,6 +51,43 @@ export interface Translations {
 }
 
 export const translations: Record<Locale, Translations> = {
+  ca: {
+    navigation: {
+      home: { name: 'Inici', href: '/', ariaLabel: 'Anar a la pàgina principal' },
+      about: { name: 'Sobre mi', href: '/about', ariaLabel: 'Anar a la pàgina sobre mi' },
+      services: { name: 'Serveis', href: '/services', ariaLabel: 'Veure els meus serveis' },
+      portfolio: { name: 'Portafoli', href: '/portfolio', ariaLabel: 'Veure el meu portafoli' },
+      blog: { name: 'Bloc', href: '/blog', ariaLabel: 'Llegir el meu bloc' },
+      contact: { name: 'Contacte', href: '/contact', ariaLabel: 'Pàgina de contacte' },
+    },
+    ui: {
+      skipToContent: 'Saltar al contingut',
+      toggleMenu: 'Obrir menú de navegació',
+      selectLanguage: 'Seleccionar idioma',
+      changeLanguage: (locale: string) => `Canviar a ${locale}`,
+      mainNavigation: 'Navegació principal',
+      mobileNavigation: 'Navegació mòbil',
+    },
+    hero: {
+      title: 'El teu Coach Tecnològic Personal',
+      subtitle: 'Aprèn a usar tecnologia, ciberseguretat i IA sense por ni complicacions. T\'acompanyo pas a pas, amb paciència i claredat.',
+      cta: 'Reserva sessió gratuïta',
+      secondaryCta: 'Veure serveis',
+      trustBadge: '✓ Coach Certificat en Tecnologia',
+      ariaLabels: {
+        goToContact: 'Anar a la pàgina de contacte',
+        viewAllServices: 'Veure tots els serveis disponibles',
+      },
+      trustIndicators: {
+        experience: '5+',
+        experienceLabel: 'Anys ajudant',
+        students: '200+',
+        studentsLabel: 'Persones formades',
+        approach: '100%',
+        approachLabel: 'Personalitzat',
+      },
+    },
+  },
   es: {
     navigation: {
       home: { name: 'Inicio', href: '/', ariaLabel: 'Ir a la página de inicio' },
@@ -70,7 +108,7 @@ export const translations: Record<Locale, Translations> = {
     hero: {
       title: 'Tu Coach de Tecnología Personal',
       subtitle: 'Aprende a usar tecnología, ciberseguridad e IA sin miedo ni complicaciones. Te ayudo paso a paso, con paciencia y claridad.',
-      cta: 'Empieza ahora',
+      cta: 'Reserva sesión gratuita',
       secondaryCta: 'Ver servicios',
       trustBadge: '✓ Coach Certificado en Tecnología',
       ariaLabels: {
@@ -105,11 +143,11 @@ export const translations: Record<Locale, Translations> = {
       mobileNavigation: 'Mobile navigation',
     },
     hero: {
-      title: 'Your Personal Technology Coach',
+      title: 'Your Personal Tech Coach',
       subtitle: 'Learn to use technology, cybersecurity and AI without fear or complications. I guide you step by step, with patience and clarity.',
-      cta: 'Start now',
+      cta: 'Book free session',
       secondaryCta: 'View services',
-      trustBadge: '✓ Certified Technology Coach',
+      trustBadge: '✓ Certified Tech Coach',
       ariaLabels: {
         goToContact: 'Go to contact page',
         viewAllServices: 'View all available services',
@@ -124,62 +162,29 @@ export const translations: Record<Locale, Translations> = {
       },
     },
   },
-  cat: {
-    navigation: {
-      home: { name: 'Inici', href: '/', ariaLabel: 'Anar a la pàgina d\'inici' },
-      about: { name: 'Sobre mi', href: '/about', ariaLabel: 'Saber més sobre mi' },
-      services: { name: 'Serveis', href: '/services', ariaLabel: 'Veure els meus serveis' },
-      portfolio: { name: 'Portfolio', href: '/portfolio', ariaLabel: 'Veure el meu portfolio' },
-      blog: { name: 'Blog', href: '/blog', ariaLabel: 'Llegir el meu blog' },
-      contact: { name: 'Contacte', href: '/contact', ariaLabel: 'Pàgina de contacte' },
-    },
-    ui: {
-      skipToContent: 'Saltar al contingut',
-      toggleMenu: 'Obrir menú de navegació',
-      selectLanguage: 'Seleccionar idioma',
-      changeLanguage: (locale: string) => `Canviar a ${locale}`,
-      mainNavigation: 'Navegació principal',
-      mobileNavigation: 'Navegació mòbil',
-    },
-    hero: {
-      title: 'El Teu Coach de Tecnologia Personal',
-      subtitle: 'Aprèn a usar tecnologia, ciberseguretat i IA sense por ni complicacions. Et guío pas a pas, amb paciència i claredat.',
-      cta: 'Comença ara',
-      secondaryCta: 'Veure serveis',
-      trustBadge: '✓ Coach Certificat en Tecnologia',
-      ariaLabels: {
-        goToContact: 'Anar a la pàgina de contacte',
-        viewAllServices: 'Veure tots els serveis disponibles',
-      },
-      trustIndicators: {
-        experience: '5+',
-        experienceLabel: 'Anys ajudant',
-        students: '200+',
-        studentsLabel: 'Persones formades',
-        approach: '100%',
-        approachLabel: 'Personalitzat',
-      },
-    },
-  },
 };
 
 /**
  * Get navigation items for a specific locale
+ * @param locale - Target locale
+ * @returns Navigation items
  */
 export function getNavigationItems(locale: Locale): NavigationItem[] {
-  const t = translations[locale];
+  const translation = translations[locale];
   return [
-    t.navigation.home,
-    t.navigation.about,
-    t.navigation.services,
-    t.navigation.portfolio,
-    t.navigation.blog,
-    t.navigation.contact,
+    translation.navigation.home,
+    translation.navigation.about,
+    translation.navigation.services,
+    translation.navigation.portfolio,
+    translation.navigation.blog,
+    translation.navigation.contact,
   ];
 }
 
 /**
  * Get UI translations for a specific locale
+ * @param locale - Target locale
+ * @returns UI translations
  */
 export function getUITranslations(locale: Locale) {
   return translations[locale].ui;
@@ -187,7 +192,18 @@ export function getUITranslations(locale: Locale) {
 
 /**
  * Get hero content for a specific locale
+ * @param locale - Target locale
+ * @returns Hero content
  */
 export function getHeroContent(locale: Locale) {
   return translations[locale].hero;
+}
+
+/**
+ * Get all translations for a specific locale
+ * @param locale - Target locale
+ * @returns All translations
+ */
+export function getTranslations(locale: Locale): Translations {
+  return translations[locale];
 }

@@ -3,11 +3,11 @@
  * Custom internationalization utilities for Ivan Tech Coach
  */
 
-export type Locale = 'es' | 'en' | 'cat';
+export type Locale = 'ca' | 'es' | 'en';
 
-export const LOCALES: Locale[] = ['es', 'en', 'cat'];
+export const LOCALES: Locale[] = ['ca', 'es', 'en'];
 
-export const DEFAULT_LOCALE: Locale = 'es';
+export const DEFAULT_LOCALE: Locale = 'ca';
 
 /**
  * Get locale from pathname
@@ -81,9 +81,9 @@ export function buildLocalizedPath(
  */
 export function getLocaleDisplayName(locale: Locale): string {
   const displayNames = {
+    ca: 'Català',
     es: 'Español',
     en: 'English',
-    cat: 'Català',
   };
   
   return displayNames[locale];

@@ -5,6 +5,7 @@
  */
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
+import HeroCTA from '@/components/sections/HeroCTA';
 import Testimonials from '@/components/Testimonials';
 import FinalCTASection from '@/components/sections/FinalCTASection';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
@@ -16,6 +17,9 @@ export default function HomePageES() {
     <>
       {/* Hero Section */}
       <Hero language="es" />
+
+      {/* Hero CTA Section - After wave transition */}
+      <HeroCTA language="es" />
 
       {/* Testimonials Section */}
       <Testimonials language="es" />
