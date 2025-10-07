@@ -30,7 +30,8 @@ export function useLocaleSwitcher() {
     const newPath = buildLocalizedPath(newLocale, pathWithoutLocale, hash, search);
 
     // Navigate to new locale preserving path, hash, and search params
-    router.push(newPath);
+    // and prevent automatic scroll to top
+    router.push(newPath, { scroll: false });
   }, [router, pathname]);
 
   const getCurrentLocale = useCallback((): Locale => {
