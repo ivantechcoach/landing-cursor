@@ -35,7 +35,8 @@ export function getPathnameWithoutLocale(pathname: string): string {
   const firstSegment = segments[0];
   
   if (LOCALES.includes(firstSegment as Locale)) {
-    return `/${segments.slice(1).join('/')}`;
+    const pathWithoutLocale = segments.slice(1).join('/');
+    return pathWithoutLocale ? `/${pathWithoutLocale}` : '/';
   }
   
   return pathname;

@@ -26,6 +26,7 @@ export default function Footer({ language = 'ca' }: FooterProps) {
       title: 'Ivan Tech Coach',
       description: 'Coaching Tecnològic Professional - Transforma la teva carrera tecnològica amb coaching personalitzat.',
       followUs: 'Segueix-nos',
+      legalHeading: 'Avís legal',
       rights: 'Tots els drets reservats.',
       madeBy: 'Fet per Ivan amb l\'ajuda d\'IA com Gemini i Cursor per demostrar habilitats de Context Engineering i Vibe Coding.',
       legal: {
@@ -38,6 +39,7 @@ export default function Footer({ language = 'ca' }: FooterProps) {
       title: 'Ivan Tech Coach',
       description: 'Coaching Tecnológico Profesional - Transforma tu carrera tecnológica con coaching personalizado.',
       followUs: 'Síguenos',
+      legalHeading: 'Avisos legales',
       rights: 'Todos los derechos reservados.',
       madeBy: 'Hecho por Ivan con la ayuda de IA como Gemini y Cursor para demostrar habilidades de Context Engineering y Vibe Coding.',
       legal: {
@@ -50,6 +52,7 @@ export default function Footer({ language = 'ca' }: FooterProps) {
       title: 'Ivan Tech Coach',
       description: 'Professional Tech Coaching - Transform your tech career with personalized coaching.',
       followUs: 'Follow Us',
+      legalHeading: 'Legal',
       rights: 'All rights reserved.',
       madeBy: 'Made by Ivan with the help of AI like Gemini and Cursor to demonstrate Context Engineering and Vibe Coding skills.',
       legal: {
@@ -64,20 +67,15 @@ export default function Footer({ language = 'ca' }: FooterProps) {
 
   return (
     <footer className="bg-gray-900 text-white" role="contentinfo">
-      <div className="content-max-width container-padding py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-          {/* Brand Section */}
-          <div className="md:col-span-1">
-            <h3 className="text-xl font-bold mb-2">{currentContent.title}</h3>
-            <p className="text-gray-300 text-sm max-w-md">
-              {currentContent.description}
-            </p>
-          </div>
+      <div className="content-max-width container-padding py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
 
           {/* Social Media */}
-          <div className="md:col-span-1 text-center">
-            <h4 className="text-sm font-semibold mb-3 text-gray-400">{currentContent.followUs}</h4>
-            <div className="flex justify-center space-x-4" role="list" aria-label="Social media links">
+          <div className="md:col-span-1">
+            <div className="text-center md:text-left">
+              <h4 className="text-sm font-semibold mb-4 text-gray-400">{currentContent.followUs}</h4>
+            </div>
+            <div className="flex justify-center md:justify-start gap-3" role="list" aria-label="Social media links">
               <a
                 href="https://linkedin.com/in/ivan-profile"
                 target="_blank"
@@ -114,12 +112,39 @@ export default function Footer({ language = 'ca' }: FooterProps) {
                   <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                 </svg>
               </a>
+              <a
+                href="https://instagram.com/ivan-username"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
+                aria-label="Instagram - Follow Ivan on Instagram"
+                role="listitem"
+              >
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.056 1.97.24 2.427.403a4.92 4.92 0 011.775 1.153 4.92 4.92 0 011.153 1.775c.163.457.347 1.257.403 2.427.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.403 2.427a4.92 4.92 0 01-1.153 1.775 4.92 4.92 0 01-1.775 1.153c-.457.163-1.257.347-2.427.403-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.427-.403a4.92 4.92 0 01-1.775-1.153 4.92 4.92 0 01-1.153-1.775c-.163-.457-.347-1.257-.403-2.427C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.056-1.17.24-1.97.403-2.427a4.92 4.92 0 011.153-1.775 4.92 4.92 0 011.775-1.153c.457-.163 1.257-.347 2.427-.403C8.416 2.175 8.796 2.163 12 2.163zm0 1.837c-3.16 0-3.532.012-4.778.069-1.028.047-1.586.218-1.956.363-.492.191-.843.418-1.213.788-.37.37-.597.721-.788 1.213-.145.37-.316.928-.363 1.956-.057 1.246-.069 1.618-.069 4.778s.012 3.532.069 4.778c.047 1.028.218 1.586.363 1.956.191.492.418.843.788 1.213.37.37.721.597 1.213.788.37.145.928.316 1.956.363 1.246.057 1.618.069 4.778.069s3.532-.012 4.778-.069c1.028-.047 1.586-.218 1.956-.363.492-.191.843-.418 1.213-.788.37-.37.597-.721.788-1.213.145-.37.316-.928.363-1.956.057-1.246.069-1.618.069-4.778s-.012-3.532-.069-4.778c-.047-1.028-.218-1.586-.363-1.956a3.081 3.081 0 00-.788-1.213 3.081 3.081 0 00-1.213-.788c-.37-.145-.928-.316-1.956-.363-1.246-.057-1.618-.069-4.778-.069zm0 3.89a4.11 4.11 0 110 8.22 4.11 4.11 0 010-8.22zm0 1.8a2.31 2.31 0 100 4.62 2.31 2.31 0 000-4.62zm5.23-3.11a1 1 0 110 2 1 1 0 010-2z"/>
+                </svg>
+              </a>
+              <a
+                href="https://youtube.com/@ivan-username"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-white/50"
+                aria-label="YouTube - Subscribe to Ivan on YouTube"
+                role="listitem"
+              >
+                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M23.498 6.186a2.983 2.983 0 00-2.099-2.116C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.399.57A2.983 2.983 0 00.502 6.186C0 8.09 0 12 0 12s0 3.91.502 5.814a2.983 2.983 0 002.099 2.116C4.495 20.5 12 20.5 12 20.5s7.505 0 9.399-.57a2.983 2.983 0 002.099-2.116C24 15.91 24 12 24 12s0-3.91-.502-5.814zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
+                </svg>
+              </a>
             </div>
           </div>
 
           {/* Legal Links */}
           <div className="md:col-span-1">
-            <div className="flex flex-col space-y-2 text-sm">
+            <div className="text-center md:text-right">
+              <h4 className="text-sm font-semibold mb-4 text-gray-400">{currentContent.legalHeading}</h4>
+            </div>
+            <div className="flex flex-col text-sm space-y-2 text-center md:text-right">
               <Link
                 href={buildLocalizedLink(pathname, '/privacy-policy')}
                 className="text-gray-300 hover:text-white transition-colors"
