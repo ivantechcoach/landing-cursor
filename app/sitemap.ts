@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/contact', priority: 0.8 },
   ];
 
-  const locales = ['es', 'en', 'cat'];
+  const locales = ['es', 'en', 'ca'];
   const sitemap: MetadataRoute.Sitemap = [];
 
   // Generate sitemap entries for each route and locale
@@ -34,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: {
             'es-ES': `${baseUrl}/es${route.path}`,
             'en-US': `${baseUrl}/en${route.path}`,
-            'ca-ES': `${baseUrl}/cat${route.path}`,
+            'ca-ES': `${baseUrl}/ca${route.path}`,
           },
         },
       });
@@ -51,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       languages: {
         'es-ES': `${baseUrl}/es`,
         'en-US': `${baseUrl}/en`,
-        'ca-ES': `${baseUrl}/cat`,
+        'ca-ES': `${baseUrl}/ca`,
         'x-default': `${baseUrl}/es`,
       },
     },

@@ -101,19 +101,13 @@ export default function Header({ language = 'ca' }: HeaderProps) {
         {ui.skipToContent}
       </a>
       
-      {/* Navbar Spacer - prevents content jumping when navbar becomes sticky */}
-      {isScrolled && <div className="navbar-spacer" />}
-      
       <header 
-        className={`navbar-debbie-codes transition-all duration-300 ${
-          isScrolled 
-            ? 'fixed top-0 left-0 right-0 bg-white shadow-md z-50' 
-            : 'relative bg-white'
-        }`}
+        className={`navbar-debbie-codes fixed top-0 left-0 right-0 bg-white ${isScrolled ? 'shadow-md' : ''} z-50`}
         role="banner"
+        style={{ height: '80px' }}
       >
         <div className="content-max-width container-padding">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link 
@@ -127,7 +121,7 @@ export default function Header({ language = 'ca' }: HeaderProps) {
                 width={40}
                 height={40}
                 className="w-10 h-10 rounded-full object-cover border-2 border-blue-600"
-                priority
+                loading="lazy"
               />
               <span className="text-2xl font-bold text-gray-900 transition-colors duration-300">
                 Ivan Tech Coach
@@ -192,7 +186,7 @@ export default function Header({ language = 'ca' }: HeaderProps) {
 
               {/* Dropdown Menu */}
               {isLanguageMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/20 py-2 z-50 language-dropdown">
+                <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/20 py-2 z-50 language-dropdown lang-switcher">
                   {LOCALES.map((locale) => {
                     const isActive = currentLocale === locale;
                     return (
@@ -256,6 +250,7 @@ export default function Header({ language = 'ca' }: HeaderProps) {
                     width={48}
                     height={48}
                     className="w-12 h-12 rounded-full object-cover border-2 border-blue-600"
+                    loading="lazy"
                   />
                   <span className="text-xl font-bold text-white">
                     Ivan Tech Coach

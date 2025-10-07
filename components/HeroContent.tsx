@@ -31,11 +31,18 @@ function HeroContent({ language = 'ca', className = "" }: HeroContentProps) {
         {/* Clean Hero Content */}
         <div className="text-white">
           {/* Main Title - Clean and minimal */}
+          {/* FIX: H1 overflow on mobile */}
           <h1 
             id="main-content"
             className="text-display mb-12 text-white font-bold"
             tabIndex={-1}
-            style={{ lineHeight: '1.1' }}
+            style={{
+              lineHeight: '1.2',
+              fontSize: 'clamp(1.6rem, 5vw, 2.2rem)',
+              wordBreak: 'break-word',
+              padding: '0 1rem',
+              textAlign: 'center'
+            }}
           >
             {currentContent.title}
           </h1>
