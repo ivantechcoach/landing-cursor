@@ -39,7 +39,12 @@ export function detectPort(): PortDetectionResult {
         url: `http://localhost:${devPort}`
       };
     } catch (error) {
-      console.warn('Could not read package.json for port detection:', error);
+      // Port detection error - log only in development
+      // eslint-disable-next-line no-console
+      const isDevelopment = process.env.NODE_ENV === 'development';
+      if (isDevelopment) {
+        console.warn('Could not read package.json for port detection:', error);
+      }
     }
   }
 
@@ -70,10 +75,17 @@ export function getBaseUrl(): string {
  */
 export function logPortDetection(): void {
   const result = detectPort();
-  console.log(`🔍 Port Detection:`);
-  console.log(`   Port: ${result.port}`);
-  console.log(`   Source: ${result.source}`);
-  console.log(`   URL: ${result.url}`);
+  // eslint-disable-next-line no-console
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  if (isDevelopment) {
+    console.log(`🔍 Port Detection:`);
+    // eslint-disable-next-line no-console
+    console.log(`   Port: ${result.port}`);
+    // eslint-disable-next-line no-console
+    console.log(`   Source: ${result.source}`);
+    // eslint-disable-next-line no-console
+    console.log(`   URL: ${result.url}`);
+  }
 }
 
 /**

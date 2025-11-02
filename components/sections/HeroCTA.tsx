@@ -17,7 +17,7 @@ interface HeroCTAProps {
   className?: string;
 }
 
-export default function HeroCTA({ language = 'ca', className = "" }: HeroCTAProps) {
+export default function HeroCTA({ className = "" }: HeroCTAProps) {
   const pathname = usePathname();
   const { getCurrentLocale } = useLocaleSwitcher();
   const currentLocale = getCurrentLocale();

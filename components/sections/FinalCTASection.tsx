@@ -6,9 +6,6 @@
  * Optimized for conversion and accessibility
  */
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { buildLocalizedLink } from '@/lib/i18n';
 import { useLocaleSwitcher } from '@/lib/hooks/useLocaleSwitcher';
 
 interface FinalCTASectionProps {
@@ -16,8 +13,7 @@ interface FinalCTASectionProps {
   className?: string;
 }
 
-export default function FinalCTASection({ language = 'ca', className = "" }: FinalCTASectionProps) {
-  const pathname = usePathname();
+export default function FinalCTASection({ className = "" }: FinalCTASectionProps) {
   const { getCurrentLocale } = useLocaleSwitcher();
   const currentLocale = getCurrentLocale();
 

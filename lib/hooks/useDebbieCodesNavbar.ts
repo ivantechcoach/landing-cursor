@@ -14,7 +14,6 @@ export function useDebbieCodesNavbar(options: UseDebbieCodesNavbarOptions = {}) 
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = 0;
     let ticking = false;
 
     const handleScroll = () => {
@@ -33,7 +32,6 @@ export function useDebbieCodesNavbar(options: UseDebbieCodesNavbarOptions = {}) 
             document.body.classList.remove('navbar-fixed');
           }
           
-          lastScrollY = scrollTop;
           ticking = false;
         });
         ticking = true;

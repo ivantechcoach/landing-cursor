@@ -13,7 +13,7 @@ interface FooterProps {
   language?: 'ca' | 'es' | 'en';
 }
 
-export default function Footer({ language = 'ca' }: FooterProps) {
+export default function Footer(_props: FooterProps = {}) {
   const pathname = usePathname();
   const { getCurrentLocale } = useLocaleSwitcher();
   

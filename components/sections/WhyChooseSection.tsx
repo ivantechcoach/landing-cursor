@@ -6,7 +6,6 @@
  * Optimized for accessibility and i18n
  */
 
-import { getUITranslations } from '@/lib/translations';
 import { useLocaleSwitcher } from '@/lib/hooks/useLocaleSwitcher';
 
 interface WhyChooseSectionProps {
@@ -14,17 +13,9 @@ interface WhyChooseSectionProps {
   className?: string;
 }
 
-interface FeatureItem {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  gradient: string;
-}
-
-export default function WhyChooseSection({ language = 'ca', className = "" }: WhyChooseSectionProps) {
+export default function WhyChooseSection({ className = "" }: WhyChooseSectionProps) {
   const { getCurrentLocale } = useLocaleSwitcher();
   const currentLocale = getCurrentLocale();
-  const ui = getUITranslations(currentLocale);
 
   // Content based on language
   const content = {

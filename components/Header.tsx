@@ -17,13 +17,12 @@ interface HeaderProps {
   language?: 'ca' | 'es' | 'en';
 }
 
-export default function Header({ language = 'ca' }: HeaderProps) {
+export default function Header(_props: HeaderProps = {}) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const { switchLocale, getCurrentLocale } = useLocaleSwitcher();
   const { isScrolled } = useDebbieCodesNavbar({ threshold: 50 });
-  const mainRef = useRef<HTMLElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
   
   // Get current locale and translations
@@ -68,20 +67,6 @@ export default function Header({ language = 'ca' }: HeaderProps) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isLanguageMenuOpen]);
-
-  // Handle locale switching with focus management
-  const handleLocaleSwitch = (newLocale: Locale) => {
-    switchLocale(newLocale);
-    
-    // Move focus to main content after locale change
-    // Use setTimeout to ensure DOM is updated
-    setTimeout(() => {
-      const mainElement = document.querySelector('main h1') as HTMLElement;
-      if (mainElement) {
-        mainElement.focus();
-      }
-    }, 100);
-  };
 
   return (
     <>
