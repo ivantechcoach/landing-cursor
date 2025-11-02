@@ -4,11 +4,12 @@
  */
 
 const puppeteer = require('puppeteer');
+require('dotenv').config({ path: '.env.local' });
 
 async function testSEOMetadata() {
   console.log('🔍 Testing SEO Metadata Implementation...\n');
   
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox','--disable-setuid-sandbox'] });
   const page = await browser.newPage();
   
   const locales = [
@@ -17,13 +18,17 @@ async function testSEOMetadata() {
     { code: 'ca', expectedLang: 'ca-ES', expectedTitle: 'Ivan Tech Coach' }
   ];
   
-  const baseUrl = 'http://localhost:3000';
+  const port = process.env.PORT || process.env.NEXT_PUBLIC_PORT || 3000;
+  const baseUrl = `http://localhost:${port}`;
   
   for (const locale of locales) {
     console.log(`📱 Testing ${locale.code.toUpperCase()} locale...`);
     
     try {
-      await page.goto(`${baseUrl}/${locale.code}`, { waitUntil: 'networkidle0' });
+      await page.goto(`${baseUrl}/${locale.code}`, { waitUntil: 'domcontentloaded', timeout: 60000 });
+      // Wait for head commit: title present and html[lang] set
+      await page.waitForFunction(() => document.title.length > 0, { timeout: 60000 });
+      await page.waitForFunction(() => document.documentElement.lang && document.documentElement.lang.length > 0, { timeout: 60000 });
       
       // Test HTML lang attribute
       const htmlLang = await page.evaluate(() => {
@@ -49,7 +54,7 @@ async function testSEOMetadata() {
       
       // Test hreflang tags
       const hreflangTags = await page.evaluate(() => {
-        const links = document.querySelectorAll('link[rel="alternate"][hreflang]');
+        const links = document.querySelectorAll('head link[rel="alternate"][hreflang]');
         return Array.from(links).map(link => ({
           hreflang: link.getAttribute('hreflang'),
           href: link.getAttribute('href')
@@ -85,7 +90,7 @@ async function testSEOMetadata() {
   // Test language switcher functionality
   console.log('🔄 Testing language switcher...');
   try {
-    await page.goto(`${baseUrl}/es`, { waitUntil: 'networkidle0' });
+    await page.goto(`${baseUrl}/es`, { waitUntil: 'domcontentloaded', timeout: 60000 });
     
     // Find and click language switcher (assuming it exists)
     const languageSwitcher = await page.$('[data-testid="language-switcher"]') || 
@@ -97,7 +102,7 @@ async function testSEOMetadata() {
       
       // Test switching to English
       await page.select('select[name="language"]', 'en');
-      await page.waitForNavigation({ waitUntil: 'networkidle0' });
+      await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 60000 });
       
       const newUrl = page.url();
       const newLang = await page.evaluate(() => document.documentElement.lang);

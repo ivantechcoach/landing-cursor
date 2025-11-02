@@ -2,9 +2,15 @@
  * About Page - English
  * Route: /en/about
  */
+import { buildBreadcrumbJsonLd } from '@/lib/jsonld';
+
 export default function AboutPageEN() {
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd('en', ['about'])) }}
+      />
       <h1 className="text-4xl font-bold text-center py-8">
         About Me
       </h1>

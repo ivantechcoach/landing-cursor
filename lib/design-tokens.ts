@@ -6,6 +6,12 @@
 
 // Color System - AA+ compliant contrast ratios
 export const colors = {
+  // Brand Core
+  brand: {
+    primary: '#7A00F5',
+    primaryHover: '#5E00C2',
+    accent: '#66FFCC',
+  },
   // Primary Brand Colors
   primary: {
     50: '#f0f9ff',
@@ -38,16 +44,15 @@ export const colors = {
   
   // CTA Green (High contrast for accessibility)
   cta: {
-    primary: '#016A3A',    // Dark green for white text (AA+)
-    primaryHover: '#014829', // Darker for hover state
-    secondary: '#FFFFFF',   // White for dark backgrounds
-    secondaryHover: '#F8FAFC', // Light gray for hover
-    // Hero specific CTA colors
+    primary: '#7A00F5',
+    primaryHover: '#5E00C2',
+    secondary: '#FFFFFF',
+    secondaryHover: '#F8FAFC',
     hero: {
-      primary: '#016A3A',    // Dark green for white text (AA+)
-      primaryHover: '#014829', // Darker for hover state
-      secondary: '#FFFFFF',   // White for dark backgrounds
-      secondaryHover: '#F8FAFC', // Light gray for hover
+      primary: '#7A00F5',
+      primaryHover: '#5E00C2',
+      secondary: '#FFFFFF',
+      secondaryHover: '#F8FAFC',
     },
   },
   

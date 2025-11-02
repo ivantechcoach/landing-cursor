@@ -179,7 +179,7 @@ export default function Testimonials({ language = 'ca' }: TestimonialsProps) {
   const currentContent = content[language];
 
   return (
-    <section className="relative py-20 bg-gray-50 overflow-hidden">
+    <section className="relative py-16 md:py-20 bg-gray-50 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -195,11 +195,11 @@ export default function Testimonials({ language = 'ca' }: TestimonialsProps) {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
             {currentContent.title}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             {currentContent.subtitle}
           </p>
         </div>
@@ -246,12 +246,12 @@ export default function Testimonials({ language = 'ca' }: TestimonialsProps) {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12 md:mt-16">
           <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">
               ¿Listo para transformar tu carrera?
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-5 md:mb-6">
               Únete a más de 100 profesionales que ya han dado el salto con mi coaching personalizado.
             </p>
             <a

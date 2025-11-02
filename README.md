@@ -46,9 +46,9 @@ lib/
 app/
 ├── layout.tsx             # Root layout
 ├── page.tsx               # Homepage (redirects to /es)
-├── es/                    # Spanish pages
+├── es/                    # Spanish pages (default)
 ├── en/                    # English pages
-└── cat/                   # Catalan pages
+└── ca/                    # Catalan pages
 ```
 
 ## 🎨 Design Tokens
@@ -76,7 +76,7 @@ The project uses a centralized design token system for consistency and maintaina
 ### Supported Locales
 - **ES** (Spanish) - Default
 - **EN** (English)
-- **CAT** (Catalan)
+- **CA** (Catalan)
 
 ### Features
 - Automatic locale detection from URL
@@ -91,14 +91,14 @@ The project uses a centralized design token system for consistency and maintaina
 export const translations: Record<Locale, Translations> = {
   es: { /* Spanish translations */ },
   en: { /* English translations */ },
-  cat: { /* Catalan translations */ },
+  ca: { /* Catalan translations */ },
   // Add new locale here
 };
 ```
 
 2. **Add locale to i18n configuration** in `lib/i18n.ts`:
 ```typescript
-export const LOCALES: Locale[] = ['es', 'en', 'cat', 'new-locale'];
+export const LOCALES: Locale[] = ['es', 'en', 'ca', 'new-locale'];
 ```
 
 3. **Create page structure** in `app/new-locale/`
@@ -153,12 +153,48 @@ pnpm install
 # Start development server
 pnpm dev
 
+# Start development server for Cursor AI browser (recommended)
+pnpm dev:cursor
+
 # Build for production
 pnpm build
 
 # Start production server
 pnpm start
 ```
+
+### Desarrollo en Cursor AI
+
+Para ejecutar el proyecto en el navegador interno de Cursor:
+
+#### Opción 1: Script Simple (Recomendado si hay problemas)
+```bash
+pnpm dev:cursor:simple
+```
+
+#### Opción 2: Script Completo
+```bash
+pnpm dev:cursor
+```
+
+#### Opción 3: Directo (Más simple)
+```bash
+pnpm dev:direct
+```
+
+Este comando:
+- ✅ Inicia el servidor de desarrollo Next.js en el puerto 3000
+- ✅ Muestra la URL para abrir en el navegador de Cursor
+- ✅ Maneja correctamente la terminación del proceso
+
+**Pasos**:
+1. Ejecuta uno de los comandos anteriores
+2. Espera a ver "Ready" en la consola
+3. Copia la URL mostrada (por ejemplo: `http://localhost:3000`)
+4. Abre el navegador interno de Cursor AI
+5. Pega la URL en la barra de direcciones
+
+**Nota**: Si tienes problemas, consulta `SOLUCION_PROBLEMAS.md` para más ayuda.
 
 ### Adding New Components
 
@@ -198,26 +234,26 @@ pnpm test:a11y
 # Test keyboard navigation
 pnpm test:keyboard
 
-# Test with screen reader
-pnpm test:screen-reader
+# Navigation-specific checks
+pnpm test:nav
 ```
 
 ### Performance Testing
 ```bash
-# Lighthouse audit
-pnpm test:lighthouse
+# Image-related performance checks
+pnpm test:images
 
-# Core Web Vitals
-pnpm test:web-vitals
+# SEO metadata checks
+pnpm test:seo
 ```
 
 ### i18n Testing
 ```bash
-# Test all locales
-pnpm test:i18n
+# Language switcher tests
+pnpm test:lang
 
-# Test locale switching
-pnpm test:locale-switch
+# i18n navigation
+pnpm test:i18n
 ```
 
 ## 📦 Deployment

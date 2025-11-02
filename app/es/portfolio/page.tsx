@@ -2,9 +2,15 @@
  * Página de Portfolio - Español
  * Ruta: /es/portfolio
  */
+import { buildBreadcrumbJsonLd } from '@/lib/jsonld';
+
 export default function PortfolioPageES() {
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd('es', ['portfolio'])) }}
+      />
       <h1 className="text-4xl font-bold text-center py-8">
         Mi Portfolio
       </h1>

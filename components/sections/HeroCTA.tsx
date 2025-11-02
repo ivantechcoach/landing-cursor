@@ -29,12 +29,12 @@ export default function HeroCTA({ language = 'ca', className = "" }: HeroCTAProp
   const contactLink = buildLocalizedLink(pathname, '/contact');
 
   return (
-    <section className={`py-16 bg-white ${className}`} aria-labelledby="hero-cta-heading">
+    <section className={`py-14 md:py-16 bg-white ${className}`} aria-labelledby="hero-cta-heading">
       <div className="content-max-width container-padding text-center">
-        <h2 id="hero-cta-heading" className="text-heading-2 text-gray-900 mb-6">
+        <h2 id="hero-cta-heading" className="text-heading-2 text-gray-900 mb-4 md:mb-6">
           {heroContent.title}
         </h2>
-        <p className="text-body text-gray-600 mb-8 max-w-3xl mx-auto">
+        <p className="text-body text-gray-600 mb-8 max-w-2xl md:max-w-3xl mx-auto leading-relaxed">
           {heroContent.subtitle}
         </p>
         
@@ -42,7 +42,7 @@ export default function HeroCTA({ language = 'ca', className = "" }: HeroCTAProp
         <div className="flex justify-center">
           <Link
             href={contactLink}
-            className="btn-primary hero-cta-focus inline-flex items-center justify-center min-w-[250px]"
+            className="btn-primary hero-cta-focus inline-flex items-center justify-center min-w-[240px] md:min-w-[260px]"
             aria-label={`${heroContent.cta} - ${heroContent.ariaLabels.goToContact}`}
           >
             <span className="relative z-10">{heroContent.cta}</span>

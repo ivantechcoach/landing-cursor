@@ -22,25 +22,26 @@ function HeroContent({ language = 'ca', className = "" }: HeroContentProps) {
   const currentContent = useMemo(() => {
     const currentLocale = getCurrentLocale();
     return getHeroContent(currentLocale);
-  }, [getCurrentLocale]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language]); // Use language prop instead of getCurrentLocale function
 
 
   return (
-    <div className={`content-max-width container-padding py-20 lg:py-32 ${className}`}>
-      <div className="max-w-5xl mx-auto text-center">
+    <div className={`content-max-width container-padding py-16 lg:py-28 ${className}`}>
+      <div className="max-w-4xl mx-auto text-center">
         {/* Clean Hero Content */}
         <div className="text-white">
           {/* Main Title - Clean and minimal */}
           {/* FIX: H1 overflow on mobile */}
           <h1 
             id="main-content"
-            className="text-display mb-12 text-white font-bold"
+            className="text-display mb-8 md:mb-10 text-white font-bold"
             tabIndex={-1}
             style={{
-              lineHeight: '1.2',
-              fontSize: 'clamp(1.6rem, 5vw, 2.2rem)',
+              lineHeight: '1.15',
+              fontSize: 'clamp(2rem, 5.5vw, 3rem)',
               wordBreak: 'break-word',
-              padding: '0 1rem',
+              padding: '0 0.5rem',
               textAlign: 'center'
             }}
           >
@@ -48,7 +49,7 @@ function HeroContent({ language = 'ca', className = "" }: HeroContentProps) {
           </h1>
 
           {/* Subtitle - Clean and spacious */}
-          <p className="text-body-large text-white/95 mb-16 max-w-5xl mx-auto font-normal leading-relaxed">
+          <p className="text-body-large text-white/90 mb-10 md:mb-16 max-w-3xl mx-auto font-normal leading-relaxed">
             {currentContent.subtitle}
           </p>
         </div>

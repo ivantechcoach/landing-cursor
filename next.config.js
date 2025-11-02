@@ -3,7 +3,12 @@ const nextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['@/components', '@/lib'],
+    // Enable React compiler optimizations
+    reactCompiler: false, // Set to true when React Compiler is stable
   },
+  
+  // Optimize production builds
+  productionBrowserSourceMaps: false,
   
   // Image optimization
   images: {
@@ -29,7 +34,9 @@ const nextConfig = {
   
   // Compiler optimizations
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'], // Keep errors and warnings in production
+    } : false,
   },
   
   // Performance optimizations
@@ -44,6 +51,14 @@ const nextConfig = {
       config.watchOptions = {
         poll: 1000,
         aggregateTimeout: 300,
+        ignored: ['**/node_modules', '**/.git', '**/.next'],
+      };
+      // Faster rebuilds in development
+      config.cache = {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename],
+        },
       };
     }
     
@@ -54,6 +69,34 @@ const nextConfig = {
         fs: false,
         net: false,
         tls: false,
+      };
+      
+      // Split chunks optimization
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            default: false,
+            vendors: false,
+            // Vendor chunk for node_modules
+            vendor: {
+              name: 'vendor',
+              chunks: 'all',
+              test: /node_modules/,
+              priority: 20,
+            },
+            // Common chunk for shared code
+            common: {
+              name: 'common',
+              minChunks: 2,
+              chunks: 'all',
+              priority: 10,
+              reuseExistingChunk: true,
+              enforce: true,
+            },
+          },
+        },
       };
     }
     
@@ -66,7 +109,7 @@ const nextConfig = {
       // Root redirects to Catalan (default language)
       {
         source: '/',
-        destination: '/ca',
+        destination: '/es',
         permanent: false,
       },
     ];

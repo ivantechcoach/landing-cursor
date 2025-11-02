@@ -1,18 +1,21 @@
 'use client';
+import { buildBreadcrumbJsonLd } from '@/lib/jsonld';
 
 /**
  * Página de Contacto - Español
  * Ruta: /es/contact
- * Note: This page is client-side, so metadata is handled by the layout
+ * Nota: Página del lado del cliente; el layout gestiona los metadatos globales
  */
-
 export default function ContactPageES() {
-  // Get environment variables
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
   const contactPhone = process.env.NEXT_PUBLIC_CONTACT_PHONE;
   const contactAddress = process.env.NEXT_PUBLIC_CONTACT_ADDRESS;
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd('es', ['contact'])) }}
+      />
       <h1 className="text-4xl font-bold text-center py-8">
         Contacto
       </h1>

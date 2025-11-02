@@ -70,6 +70,12 @@ export default function RootLayoutClient({ children }: RootLayoutClientProps) {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:px-4 focus:py-2 rounded"
+      >
+        Skip to content
+      </a>
       <Header language={language} />
       <main id="main-content" className="flex-1">
         {children}

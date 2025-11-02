@@ -11,15 +11,15 @@
   
   /* Header Navigation Focus Styles */
   .header-focus {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-opacity-75;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7A00F5] focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-opacity-75;
   }
   
   .header-link-focus {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-blue-50 focus-visible:text-blue-700 focus-visible:ring-opacity-75;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7A00F5] focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-[#7A00F5]/10 focus-visible:text-[#7A00F5] focus-visible:ring-opacity-75;
   }
   
   .header-button-focus {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-blue-600 focus-visible:text-white focus-visible:ring-opacity-75;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7A00F5] focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-[#7A00F5] focus-visible:text-white focus-visible:ring-opacity-75;
   }
   
   /* Skip Link - Enhanced visibility for accessibility */
@@ -163,11 +163,27 @@ a {
 /* Custom Component Styles */
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    @apply text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background-color: #7A00F5; /* brand primary */
+  }
+  .btn-primary:hover {
+    background-color: #5E00C2; /* brand hover */
+  }
+  .btn-primary:focus-visible {
+    --tw-ring-color: #7A00F5;
   }
   
   .btn-secondary {
-    @apply bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+    @apply px-6 py-3 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    color: #7A00F5;
+    background-color: #FFFFFF;
+    border: 2px solid #7A00F5;
+  }
+  .btn-secondary:hover {
+    background-color: rgba(122, 0, 245, 0.08);
+  }
+  .btn-secondary:focus-visible {
+    --tw-ring-color: #7A00F5;
   }
   
   .card {

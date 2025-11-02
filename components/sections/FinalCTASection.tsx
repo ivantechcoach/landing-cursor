@@ -52,14 +52,12 @@ export default function FinalCTASection({ language = 'ca', className = "" }: Fin
         <h2 id="final-cta-heading" className="text-heading-1 text-white mb-6">
           {currentContent.title}
         </h2>
-        <p className="text-body-large text-blue-100 mb-8 max-w-4xl mx-auto">
+        <p className="text-body-large text-blue-100 mb-6 max-w-4xl mx-auto">
           {currentContent.subtitle}
         </p>
-        {/* ADD: AI/Cyber info block replacing redundant CTAs (no CTA buttons here) */}
-        <div className="ai-cyber-block mx-auto max-w-3xl">
-          <h3 className="text-heading-3">{currentContent.infoTitle}</h3>
-          <p className="text-body text-white/90 mt-2">{currentContent.infoText}</p>
-        </div>
+        {/* ADD: subtle divider for visual balance after removing duplicated block */}
+        <div className="h-px bg-white/20 max-w-2xl mx-auto mb-4" aria-hidden="true" />
+        {/* REMOVE: duplicated AI/Cyber block (already present in previous section) */}
       </div>
     </section>
   );

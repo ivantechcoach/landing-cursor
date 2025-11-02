@@ -1,10 +1,10 @@
 /**
- * Root Page - Redirects to Spanish by default
+ * Root Page - Redirects to Catalan by default
  * This page handles the root route "/"
  */
 import { redirect } from 'next/navigation';
 
 export default function RootPage() {
-  // Redirect to Spanish version by default
-  redirect('/es');
+  // Redirect to Catalan version by default
+  redirect('/ca');
 }

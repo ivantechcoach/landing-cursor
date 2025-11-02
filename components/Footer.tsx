@@ -147,19 +147,19 @@ export default function Footer({ language = 'ca' }: FooterProps) {
             <div className="flex flex-col text-sm space-y-2 text-center md:text-right">
               <Link
                 href={buildLocalizedLink(pathname, '/privacy-policy')}
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-white transition-colors hover:underline decoration-[#66FFCC]/70 underline-offset-4"
               >
                 {currentContent.legal.privacy}
               </Link>
               <Link
                 href={buildLocalizedLink(pathname, '/cookie-policy')}
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-white transition-colors hover:underline decoration-[#66FFCC]/70 underline-offset-4"
               >
                 {currentContent.legal.cookies}
               </Link>
               <Link
                 href={buildLocalizedLink(pathname, '/terms-of-use')}
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-white transition-colors hover:underline decoration-[#66FFCC]/70 underline-offset-4"
               >
                 {currentContent.legal.terms}
               </Link>

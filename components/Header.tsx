@@ -140,8 +140,8 @@ export default function Header({ language = 'ca' }: HeaderProps) {
                   href={localizedHref}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 header-link-focus ${
                     isActive
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                      ? 'text-[#7A00F5] bg-[#7A00F5]/10'
+                      : 'text-gray-700 hover:text-[#7A00F5] hover:bg-gray-50'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                   aria-label={item.ariaLabel}
@@ -162,6 +162,7 @@ export default function Header({ language = 'ca' }: HeaderProps) {
                 aria-label={ui.selectLanguage}
                 aria-expanded={isLanguageMenuOpen}
                 aria-haspopup="true"
+                data-testid="language-switcher"
               >
                 <svg 
                   className="w-4 h-4" 
@@ -186,7 +187,7 @@ export default function Header({ language = 'ca' }: HeaderProps) {
 
               {/* Dropdown Menu */}
               {isLanguageMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/20 py-2 z-50 language-dropdown lang-switcher">
+                <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/20 py-2 z-50 language-dropdown lang-switcher" data-testid="language-switcher-menu">
                   {LOCALES.map((locale) => {
                     const isActive = currentLocale === locale;
                     return (

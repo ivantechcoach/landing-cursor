@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Suspense } from 'react';
+import { headers } from 'next/headers';
 import RootLayoutClient from '@/components/RootLayoutClient';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -32,9 +33,13 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const pathname = headers().get('x-pathname') || headers().get('next-url') || '';
+  const currentPath = pathname || '';
+  const lang = currentPath.startsWith('/es') ? 'es-ES' : currentPath.startsWith('/en') ? 'en-US' : 'ca-ES';
   return (
-    <html lang="ca-ES" className="scroll-smooth" style={{ scrollBehavior: 'smooth' }}>
+    <html lang={lang} className="scroll-smooth" style={{ scrollBehavior: 'smooth' }}>
       <head>
+        <title>Ivan Tech Coach</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -48,6 +53,55 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="alternate" hrefLang="es-ES" href="https://ivantechcoach.com/es" />
         <link rel="alternate" hrefLang="en-US" href="https://ivantechcoach.com/en" />
         <link rel="alternate" hrefLang="x-default" href="https://ivantechcoach.com/ca" />
+        
+        {/* Organization JSON-LD */}
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Ivan Tech Coach',
+              url: 'https://ivantechcoach.com',
+              logo: 'https://ivantechcoach.com/images/branding/logo.svg',
+              sameAs: [
+                'https://x.com/ivantechcoach',
+                'https://www.linkedin.com/in/ivantechcoach'
+              ],
+              foundingDate: '2020',
+              founder: {
+                '@type': 'Person',
+                name: 'Ivan Tech Coach'
+              },
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'customer support',
+                availableLanguage: ['ca-ES', 'es-ES', 'en-US']
+              }
+            })
+          }}
+        />
+        
+        {/* WebSite JSON-LD with SearchAction */}
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Ivan Tech Coach',
+              url: 'https://ivantechcoach.com',
+              inLanguage: 'ca-ES',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://ivantechcoach.com/search?q={search_term_string}',
+                'query-input': 'required name=search_term_string'
+              }
+            })
+          }}
+        />
         
       </head>
       <body className={`${inter.className} antialiased`}>
