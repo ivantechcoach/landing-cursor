@@ -11,15 +11,15 @@
   
   /* Header Navigation Focus Styles */
   .header-focus {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-opacity-75;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7A00F5] focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-opacity-75;
   }
   
   .header-link-focus {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-blue-50 focus-visible:text-blue-700 focus-visible:ring-opacity-75;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7A00F5] focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-[#7A00F5]/10 focus-visible:text-[#7A00F5] focus-visible:ring-opacity-75;
   }
   
   .header-button-focus {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-blue-600 focus-visible:text-white focus-visible:ring-opacity-75;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7A00F5] focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:bg-[#7A00F5] focus-visible:text-white focus-visible:ring-opacity-75;
   }
   
   /* Skip Link - Enhanced visibility for accessibility */
@@ -163,11 +163,27 @@ a {
 /* Custom Component Styles */
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    @apply text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background-color: #7A00F5; /* brand primary */
+  }
+  .btn-primary:hover {
+    background-color: #5E00C2; /* brand hover */
+  }
+  .btn-primary:focus-visible {
+    --tw-ring-color: #7A00F5;
   }
   
   .btn-secondary {
-    @apply bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+    @apply px-6 py-3 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    color: #7A00F5;
+    background-color: #FFFFFF;
+    border: 2px solid #7A00F5;
+  }
+  .btn-secondary:hover {
+    background-color: rgba(122, 0, 245, 0.08);
+  }
+  .btn-secondary:focus-visible {
+    --tw-ring-color: #7A00F5;
   }
   
   .card {
@@ -206,6 +222,19 @@ a {
     text-wrap: balance;
   }
   
+  /* ADD: AI/Cyber info block styles */
+  .ai-cyber-block {
+    background: linear-gradient(135deg, #1a1a1a, #232323);
+    color: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .ai-cyber-block h3 {
+    color: #66FFCC;
+    margin-bottom: 0.8rem;
+  }
+  
   .scroll-smooth {
     scroll-behavior: smooth;
   }
@@ -227,23 +256,20 @@ a {
 .navbar-debbie-codes {
   width: 100%;
   z-index: 50;
-  transition: all 0.3s ease-out;
+  height: 80px; /* FIX Navbar scroll jump: fixed height */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* limit transitions */
 }
 
 /* Initial state - opaque and relative positioned */
-.navbar-debbie-codes.relative {
-  position: relative;
-  background-color: white;
-}
+/* Remove relative variant; header is always fixed */
 
 /* Scrolled state - fixed and solid background */
-.navbar-debbie-codes.fixed {
+.navbar-debbie-codes.fixed { /* kept for compatibility, but always fixed */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Language Selector Styles */
@@ -317,7 +343,7 @@ a {
 
 /* Prevent content jumping when navbar becomes fixed */
 body.navbar-fixed {
-  padding-top: 4rem;
+  padding-top: 80px; /* FIX Navbar scroll jump: match header height */
 }
 
 /* Text shadows for better readability on transparent background - Debbie.codes style */
@@ -331,14 +357,7 @@ body.navbar-fixed {
 }
 
 /* Ensure proper spacing when navbar becomes fixed - Debbie.codes style */
-.navbar-spacer {
-  height: 4rem;
-  transition: height 0.3s ease-out;
-}
-
-.navbar-spacer.compressed {
-  height: 3.5rem;
-}
+/* Remove spacer; fixed height and body padding handles layout */
 
 /* Cookie banner styles */
 .cookie-banner {

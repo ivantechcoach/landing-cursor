@@ -6,6 +6,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
+import { buildBreadcrumbJsonLd, buildFaqJsonLd } from '@/lib/jsonld';
 
 export const metadata: Metadata = generateSEOMetadata('es', 'services');
 
@@ -43,6 +44,17 @@ const services = [
 export default function ServicesPageES() {
   return (
     <main className="min-h-screen bg-gray-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd('es', ['services'])) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqJsonLd([
+          { question: '¿Qué servicios ofreces?', answer: 'Desarrollo web, soluciones de IA, soporte IT y ciberseguridad.' },
+          { question: '¿Ofreces planes personalizados?', answer: 'Sí, los planes se adaptan a tus objetivos, presupuesto y tiempos.' },
+        ])) }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">

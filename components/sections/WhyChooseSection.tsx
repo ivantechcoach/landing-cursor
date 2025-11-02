@@ -40,7 +40,7 @@ export default function WhyChooseSection({ language = 'ca', className = "" }: Wh
           ),
           title: 'Coaching Personalizado',
           description: 'Cada sesión está adaptada a tus necesidades específicas y objetivos profesionales únicos.',
-          gradient: 'from-blue-500 to-purple-500'
+          gradient: 'from-[#7A00F5] to-[#66FFCC]'
         },
         {
           icon: (
@@ -50,7 +50,7 @@ export default function WhyChooseSection({ language = 'ca', className = "" }: Wh
           ),
           title: 'Tecnologías Actuales',
           description: 'Aprende las tecnologías más demandadas del mercado laboral actual con casos reales.',
-          gradient: 'from-purple-500 to-pink-500'
+          gradient: 'from-[#7A00F5] to-[#66FFCC]'
         },
         {
           icon: (
@@ -60,7 +60,7 @@ export default function WhyChooseSection({ language = 'ca', className = "" }: Wh
           ),
           title: 'Resultados Garantizados',
           description: 'Metodología probada que ha ayudado a más de 100 profesionales a conseguir sus objetivos.',
-          gradient: 'from-green-500 to-blue-500'
+          gradient: 'from-[#7A00F5] to-[#66FFCC]'
         }
       ]
     },
@@ -76,7 +76,7 @@ export default function WhyChooseSection({ language = 'ca', className = "" }: Wh
           ),
           title: 'Personalized Coaching',
           description: 'Each session is tailored to your specific needs and unique professional goals.',
-          gradient: 'from-blue-500 to-purple-500'
+          gradient: 'from-[#7A00F5] to-[#66FFCC]'
         },
         {
           icon: (
@@ -86,7 +86,7 @@ export default function WhyChooseSection({ language = 'ca', className = "" }: Wh
           ),
           title: 'Current Technologies',
           description: 'Learn the most in-demand technologies in today\'s job market with real cases.',
-          gradient: 'from-purple-500 to-pink-500'
+          gradient: 'from-[#7A00F5] to-[#66FFCC]'
         },
         {
           icon: (
@@ -96,7 +96,7 @@ export default function WhyChooseSection({ language = 'ca', className = "" }: Wh
           ),
           title: 'Guaranteed Results',
           description: 'Proven methodology that has helped over 100 professionals achieve their goals.',
-          gradient: 'from-green-500 to-blue-500'
+          gradient: 'from-[#7A00F5] to-[#66FFCC]'
         }
       ]
     },
@@ -112,7 +112,7 @@ export default function WhyChooseSection({ language = 'ca', className = "" }: Wh
           ),
           title: 'Coaching Personalitzat',
           description: 'Cada sessió està adaptada a les teves necessitats específiques i objectius professionals únics.',
-          gradient: 'from-blue-500 to-purple-500'
+          gradient: 'from-[#7A00F5] to-[#66FFCC]'
         },
         {
           icon: (
@@ -122,7 +122,7 @@ export default function WhyChooseSection({ language = 'ca', className = "" }: Wh
           ),
           title: 'Tecnologies Actuals',
           description: 'Aprèn les tecnologies més demandades del mercat laboral actual amb casos reals.',
-          gradient: 'from-purple-500 to-pink-500'
+          gradient: 'from-[#7A00F5] to-[#66FFCC]'
         },
         {
           icon: (
@@ -132,7 +132,7 @@ export default function WhyChooseSection({ language = 'ca', className = "" }: Wh
           ),
           title: 'Resultats Garantits',
           description: 'Metodologia provada que ha ajudat a més de 100 professionals a aconseguir els seus objectius.',
-          gradient: 'from-green-500 to-blue-500'
+          gradient: 'from-[#7A00F5] to-[#66FFCC]'
         }
       ]
     }
@@ -156,7 +156,7 @@ export default function WhyChooseSection({ language = 'ca', className = "" }: Wh
           {currentContent.features.map((feature, index) => (
             <div 
               key={index}
-              className="text-center p-8 rounded-2xl hover:shadow-lg transition-shadow duration-300 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2"
+              className="text-center p-8 rounded-2xl hover:shadow-lg transition-shadow duration-300 focus-within:ring-2 focus-within:ring-[#7A00F5] focus-within:ring-offset-2"
               tabIndex={0}
             >
               <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-full flex items-center justify-center mx-auto mb-6`}>

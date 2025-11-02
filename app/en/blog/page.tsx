@@ -1,3 +1,4 @@
+import { buildBreadcrumbJsonLd } from '@/lib/jsonld';
 /**
  * Blog Page - English
  * Route: /en/blog
@@ -5,6 +6,10 @@
 export default function BlogPageEN() {
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd('en', ['blog'])) }}
+      />
       <h1 className="text-4xl font-bold text-center py-8">
         My Blog
       </h1>

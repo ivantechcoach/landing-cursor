@@ -1,55 +1,67 @@
 /**
- * Página de Servicios - Español
- * Ruta: /es/services
+ * Pàgina de Serveis - Català
+ * Ruta: /ca/services
  * Optimized for performance with WebP images and lazy loading
  */
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
+import { buildBreadcrumbJsonLd, buildFaqJsonLd } from '@/lib/jsonld';
 
-export const metadata: Metadata = generateSEOMetadata('es', 'services');
+export const metadata: Metadata = generateSEOMetadata('ca', 'services');
 
 const services = [
   {
     id: 'web-development',
-    title: 'Desarrollo Web',
-    description: 'Creación de sitios web modernos y responsivos usando las últimas tecnologías.',
+    title: 'Desenvolupament Web',
+    description: 'Creació de llocs web moderns i responsius amb les últimes tecnologies.',
     image: '/images/services/webdevelopment.webp',
     technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS']
   },
   {
     id: 'ai-solutions',
-    title: 'Soluciones de IA',
-    description: 'Implementación de inteligencia artificial para automatizar procesos y mejorar la eficiencia.',
+    title: 'Solucions d\'IA',
+    description: 'Implementació d\'intel·ligència artificial per automatitzar processos i millorar l\'eficiència.',
     image: '/images/services/ai.webp',
     technologies: ['Machine Learning', 'Python', 'TensorFlow', 'OpenAI']
   },
   {
     id: 'it-support',
-    title: 'Soporte Técnico',
-    description: 'Mantenimiento y soporte técnico integral para sistemas y aplicaciones empresariales.',
+    title: 'Suport IT',
+    description: 'Manteniment i suport tècnic integral per a sistemes i aplicacions empresarials.',
     image: '/images/services/itsupport.webp',
     technologies: ['DevOps', 'Cloud Computing', 'Monitoring', 'Automation']
   },
   {
     id: 'security',
-    title: 'Seguridad Informática',
-    description: 'Protección de sistemas y datos con las mejores prácticas de ciberseguridad.',
+    title: 'Ciberseguretat',
+    description: 'Protecció de sistemes i dades amb les millors pràctiques de ciberseguretat.',
     image: '/images/services/security.webp',
     technologies: ['Cybersecurity', 'Penetration Testing', 'Security Audits', 'Compliance']
   }
 ];
 
-export default function ServicesPageES() {
+export default function ServicesPageCA() {
   return (
     <main className="min-h-screen bg-gray-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd('ca', ['services'])) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqJsonLd([
+          { question: 'Quins serveis ofereixes?', answer: 'Desenvolupament web, solucions d’IA, suport IT i ciberseguretat.' },
+          { question: 'Oferiu plans personalitzats?', answer: 'Sí, els plans s’adapten als teus objectius, pressupost i terminis.' },
+        ])) }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Mis Servicios
+            Els meus serveis
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Soluciones tecnológicas integrales para impulsar tu negocio hacia el futuro digital
+            Solucions tecnològiques integrals per impulsar el teu negoci cap al futur digital
           </p>
         </div>
         
@@ -62,7 +74,7 @@ export default function ServicesPageES() {
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src={service.image}
-                  alt={`${service.title} - Servicio profesional`}
+                  alt={`${service.title} - Servei professional`}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -92,7 +104,7 @@ export default function ServicesPageES() {
                 </div>
                 
                 <button className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200">
-                  Más Información
+                  Més informació
                 </button>
               </div>
             </div>

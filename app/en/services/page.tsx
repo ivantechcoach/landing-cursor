@@ -4,6 +4,7 @@
  * Optimized for performance with WebP images and lazy loading
  */
 import Image from 'next/image';
+import { buildBreadcrumbJsonLd, buildFaqJsonLd } from '@/lib/jsonld';
 
 const services = [
   {
@@ -39,6 +40,17 @@ const services = [
 export default function ServicesPageEN() {
   return (
     <main className="min-h-screen bg-gray-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd('en', ['services'])) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqJsonLd([
+          { question: 'What services do you offer?', answer: 'Web development, AI solutions, IT support, and cybersecurity.' },
+          { question: 'Do you provide customized plans?', answer: 'Yes, plans are tailored to your goals, budget, and timeline.' },
+        ])) }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">

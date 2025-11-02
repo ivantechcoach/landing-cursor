@@ -7,7 +7,7 @@ export type Locale = 'ca' | 'es' | 'en';
 
 export const LOCALES: Locale[] = ['ca', 'es', 'en'];
 
-export const DEFAULT_LOCALE: Locale = 'ca';
+export const DEFAULT_LOCALE: Locale = 'es';
 
 /**
  * Get locale from pathname

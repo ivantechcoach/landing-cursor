@@ -72,7 +72,7 @@ try {
   const headerTSX = fs.readFileSync(path.join(__dirname, '../components/Header.tsx'), 'utf8');
   
   // Check if translations exist for all languages
-  const languages = ['es', 'en', 'cat'];
+  const languages = ['es', 'en', 'ca'];
   const navItems = ['home', 'about', 'services', 'portfolio', 'blog', 'contact'];
   
   let i18nTestsPassed = 0;
@@ -137,21 +137,20 @@ try {
   console.log('   ❌ Error reading Header.tsx:', error.message, '\n');
 }
 
-// Test 5: Check Hero CTA accessibility
+// Test 5: Check Hero CTA accessibility (primary CTA only)
 console.log('5. Testing Hero CTA Accessibility...');
 try {
-  const heroTSX = fs.readFileSync(path.join(__dirname, '../components/Hero.tsx'), 'utf8');
+  const heroCTAPath = path.join(__dirname, '../components/sections/HeroCTA.tsx');
+  const heroCTA = fs.readFileSync(heroCTAPath, 'utf8');
   
   const heroChecks = [
-    'aria-label={`${currentContent.cta} - ${currentContent.ariaLabels.goToContact}`}', // Primary CTA has aria-label
-    'aria-label={`${currentContent.secondaryCta} - ${currentContent.ariaLabels.viewAllServices}`}', // Secondary CTA has aria-label
-    'hero-cta-focus', // Primary CTA has focus styles
-    'hero-secondary-cta-focus' // Secondary CTA has focus styles
+    'aria-label={`${heroContent.cta} - ${heroContent.ariaLabels.goToContact}`}', // Primary CTA has aria-label
+    'hero-cta-focus' // Primary CTA has focus styles
   ];
   
   let heroTestsPassed = 0;
   heroChecks.forEach(check => {
-    if (heroTSX.includes(check)) {
+    if (heroCTA.includes(check)) {
       console.log(`   ✅ ${check} - Found`);
       heroTestsPassed++;
     } else {
@@ -161,7 +160,7 @@ try {
   
   console.log(`   Hero CTA Accessibility: ${heroTestsPassed}/${heroChecks.length} passed\n`);
 } catch (error) {
-  console.log('   ❌ Error reading Hero.tsx:', error.message, '\n');
+  console.log('   ❌ Error reading HeroCTA.tsx:', error.message, '\n');
 }
 
 // Test 6: Check if skip link is properly implemented

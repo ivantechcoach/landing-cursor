@@ -29,6 +29,11 @@ export function useLocaleSwitcher() {
     // Build new localized path
     const newPath = buildLocalizedPath(newLocale, pathWithoutLocale, hash, search);
 
+    // Preserve current scroll position before navigation
+    try {
+      sessionStorage.setItem('scrollY', String(window.scrollY));
+    } catch {}
+
     // Navigate to new locale preserving path, hash, and search params
     // and prevent automatic scroll to top
     router.push(newPath, { scroll: false });

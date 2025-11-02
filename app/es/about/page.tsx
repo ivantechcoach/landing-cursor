@@ -4,12 +4,17 @@
  */
 import type { Metadata } from 'next';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
+import { buildBreadcrumbJsonLd } from '@/lib/jsonld';
 
 export const metadata: Metadata = generateSEOMetadata('es', 'about');
 
 export default function AboutPageES() {
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd('es', ['about'])) }}
+      />
       <h1 className="text-4xl font-bold text-center py-8">
         Acerca de Mí
       </h1>
