@@ -5,6 +5,7 @@
  */
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
+import ServicesSection from '@/components/sections/ServicesSection';
 import HeroCTA from '@/components/sections/HeroCTA';
 import Testimonials from '@/components/Testimonials';
 import FinalCTASection from '@/components/sections/FinalCTASection';
@@ -23,6 +24,9 @@ export default function HomePageEN() {
       />
       {/* Hero Section */}
       <Hero language="en" />
+
+      {/* Services Section */}
+      <ServicesSection language="en" />
 
       {/* Hero CTA Section - After wave transition */}
       <HeroCTA language="en" />

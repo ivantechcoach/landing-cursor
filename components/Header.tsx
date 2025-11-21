@@ -293,7 +293,6 @@ export default function Header(_props: HeaderProps = {}) {
                           type="button"
                           onClick={() => {
                             handleLanguageSelect(locale);
-                            setIsMobileMenuOpen(false);
                           }}
                           className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 header-button-focus flex flex-col items-center ${
                             isActive

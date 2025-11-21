@@ -56,15 +56,28 @@ export default function RootLayoutClient({ children }: RootLayoutClientProps) {
     const restore = () => {
       const saved = sessionStorage.getItem('scrollY');
       if (saved !== null) {
-        window.scrollTo({ top: parseInt(saved, 10), behavior: 'instant' as ScrollBehavior });
-        sessionStorage.removeItem('scrollY');
+        const scrollY = parseInt(saved, 10);
+        // Use requestAnimationFrame to ensure DOM is ready
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: scrollY, behavior: 'instant' as ScrollBehavior });
+          // Remove after successful restoration with a small delay to handle multiple calls
+          setTimeout(() => {
+            sessionStorage.removeItem('scrollY');
+          }, 100);
+        });
       }
     };
-    // Attempt on load and on route/locale change
-    window.addEventListener('load', restore);
-    restore();
+    
+    // Restore scroll after DOM is ready (multiple attempts for reliability)
+    const timeoutId = setTimeout(restore, 0);
+    requestAnimationFrame(() => {
+      restore();
+      // Also try after a short delay in case content loads asynchronously
+      setTimeout(restore, 50);
+    });
+    
     return () => {
-      window.removeEventListener('load', restore);
+      clearTimeout(timeoutId);
     };
   }, [pathname]);
 
