@@ -30,6 +30,7 @@ export default function ServicesSection({ className = "" }: ServicesSectionProps
     // Tech Coaching - Chalkboard/Teacher icon
     (
       <svg 
+        key={0}
         className="w-12 h-12 text-white" 
         fill="none" 
         stroke="currentColor" 
@@ -47,6 +48,7 @@ export default function ServicesSection({ className = "" }: ServicesSectionProps
     // Technical Support - Tools icon
     (
       <svg 
+        key={1}
         className="w-12 h-12 text-white" 
         fill="none" 
         stroke="currentColor" 
@@ -70,6 +72,7 @@ export default function ServicesSection({ className = "" }: ServicesSectionProps
     // AI & Automation - Robot icon
     (
       <svg 
+        key={2}
         className="w-12 h-12 text-white" 
         fill="none" 
         stroke="currentColor" 
