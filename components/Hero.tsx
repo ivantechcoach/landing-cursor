@@ -8,7 +8,7 @@
 
 import { memo } from 'react';
 import HeroContent from './HeroContent';
-import WaveTransition from './WaveTransition';
+import WaveSeparator from './WaveSeparator';
 
 interface HeroProps {
   language?: 'ca' | 'es' | 'en';
@@ -21,7 +21,7 @@ function Hero({
 }: HeroProps) {
   return (
     <section 
-      className={`relative flex items-center overflow-hidden hero-section ${className}`}
+      className={`relative flex items-center overflow-visible hero-section ${className}`}
       style={{ 
         contain: 'layout style paint'
       }}
@@ -38,11 +38,8 @@ function Hero({
         <HeroContent language={language} />
       </div>
 
-      {/* Wave Transition */}
-      <WaveTransition 
-        fillColor="#FFFFFF"
-        height={120}
-      />
+      {/* Wave Separator */}
+      <WaveSeparator nextBg="#FFFFFF" />
     </section>
   );
 }

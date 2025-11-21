@@ -92,7 +92,7 @@ export default function ServicesSection({ className = "" }: ServicesSectionProps
 
   return (
     <section 
-      className={`py-24 bg-white dark:bg-neutral-900 relative ${className}`} 
+      className={`pt-24 md:pt-32 pb-24 bg-white dark:bg-neutral-900 relative ${className}`} 
       aria-labelledby="services-heading"
     >
       <TechBackground iconCount={8} />

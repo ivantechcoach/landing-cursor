@@ -87,7 +87,7 @@ export default function Header(_props: HeaderProps = {}) {
       </a>
       
       <header 
-        className={`navbar-debbie-codes fixed top-0 left-0 right-0 bg-white ${isScrolled ? 'shadow-md' : ''} z-50`}
+        className={`navbar-debbie-codes sticky top-0 left-0 right-0 bg-white/80 backdrop-blur ${isScrolled ? 'shadow-md' : ''} z-50`}
         role="banner"
         style={{ height: '80px' }}
       >
@@ -138,12 +138,12 @@ export default function Header(_props: HeaderProps = {}) {
           </nav>
 
           {/* Language Selector - Compact Dropdown */}
-          <div className="hidden md:flex items-center relative z-[9999]" ref={languageMenuRef}>
-            <div className="relative z-[9999]">
+          <div className="hidden md:flex items-center relative z-[60]" ref={languageMenuRef}>
+            <div className="relative z-[60]">
               <button
                 type="button"
                 onClick={toggleLanguageMenu}
-                className="language-selector-button flex items-center space-x-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 header-button-focus bg-gray-100 hover:bg-gray-200 text-gray-700 solid relative z-[9999]"
+                className="language-selector-button flex items-center space-x-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 header-button-focus bg-gray-100 hover:bg-gray-200 text-gray-700 solid relative z-[60]"
                 aria-label={ui.selectLanguage}
                 aria-expanded={isLanguageMenuOpen}
                 aria-haspopup="true"
@@ -172,7 +172,7 @@ export default function Header(_props: HeaderProps = {}) {
 
               {/* Dropdown Menu */}
               {isLanguageMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/20 py-2 z-[99999] language-dropdown lang-switcher" data-testid="language-switcher-menu">
+                <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/20 py-2 z-[70] language-dropdown lang-switcher" data-testid="language-switcher-menu">
                   {LOCALES.map((locale) => {
                     const isActive = currentLocale === locale;
                     return (
