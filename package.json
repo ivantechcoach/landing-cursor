@@ -6,6 +6,8 @@
     "setup-port": "node scripts/setup-port.js",
     "detect-port": "node scripts/detect-running-port.js",
     "clean": "node scripts/clean-restart.js",
+    "kill-node": "node scripts/kill-node.js",
+    "diagnose": "node scripts/diagnose.js",
     "dev": "node scripts/setup-port.js && next dev --port 3000",
     "dev:cursor": "node scripts/dev-cursor.js",
     "dev:cursor:simple": "node scripts/dev-simple.js",

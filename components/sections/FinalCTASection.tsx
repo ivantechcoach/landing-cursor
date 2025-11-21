@@ -43,7 +43,7 @@ export default function FinalCTASection({ className = "" }: FinalCTASectionProps
   const currentContent = content[currentLocale];
 
   return (
-    <section className={`section-padding bg-gradient-to-r from-blue-600 to-purple-600 ${className}`} aria-labelledby="final-cta-heading">
+    <section className={`bg-gradient-to-r from-blue-600 to-purple-600 ${className}`} style={{ paddingTop: 0, paddingBottom: 'clamp(64px, 8vw, 96px)' }} aria-labelledby="final-cta-heading">
       <div className="content-max-width container-padding text-center">
         <h2 id="final-cta-heading" className="text-heading-1 text-white mb-6">
           {currentContent.title}

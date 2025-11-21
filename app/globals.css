@@ -89,6 +89,28 @@
     html {
       scroll-behavior: auto;
     }
+    
+    /* Disable FAQ accordion animations */
+    [role="region"][aria-labelledby^="faq-button"] {
+      transition: none !important;
+    }
+    
+    [role="region"][aria-labelledby^="faq-button"] > div {
+      transition: none !important;
+    }
+    
+    /* Disable tech transition animations */
+    .section-transition-bg {
+      animation: none !important;
+    }
+    
+    .faq-background::before {
+      animation: none !important;
+    }
+    
+    button[aria-controls^="faq-content"] span[aria-hidden="true"] {
+      transition: none !important;
+    }
   }
   
   /* Ensure focus is visible even with reduced motion */
@@ -523,10 +545,18 @@ a {
   background-color: white;
 }
 
-/* Language Selector Styles */
+/* Language Selector Styles - Ensure high z-index above animated backgrounds */
 .language-selector-button {
   border: 1px solid transparent;
   transition: all 0.2s ease;
+  position: relative;
+  z-index: 9999;
+}
+
+.language-switcher,
+[data-testid="language-switcher"] {
+  position: relative;
+  z-index: 9999;
 }
 
 .language-selector-button:hover {
@@ -550,10 +580,17 @@ a {
   border-color: rgba(0, 0, 0, 0.2);
 }
 
-/* Language Dropdown Animation */
+/* Language Dropdown Animation - Ensure high z-index above animated backgrounds */
 .language-dropdown {
   animation: dropdownSlideIn 0.2s ease-out;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 99999;
+}
+
+[data-testid="language-switcher-menu"] {
+  position: relative;
+  z-index: 99999;
 }
 
 @keyframes dropdownSlideIn {
@@ -858,15 +895,37 @@ section + section {
 
 /* Separación entre bloques en móvil: 24-40px, desktop: 40-64px */
 @media (max-width: 768px) {
-  section + section {
+  section + section:not([aria-labelledby="final-cta-heading"]) {
     padding-top: clamp(24px, 5vw, 40px);
   }
 }
 
 @media (min-width: 768px) {
-  section + section {
+  section + section:not([aria-labelledby="final-cta-heading"]) {
     padding-top: clamp(40px, 6vw, 64px);
   }
+}
+
+/* Remove spacing between FAQ and FinalCTA sections for seamless transition */
+.faq-background + section[aria-labelledby="final-cta-heading"],
+section.faq-background + section[aria-labelledby="final-cta-heading"],
+.faq-background ~ section[aria-labelledby="final-cta-heading"],
+section.faq-background ~ section[aria-labelledby="final-cta-heading"] {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Ensure FAQ section has no bottom spacing */
+.faq-background {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.faq-background > section {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .animated-wave-group > use {
@@ -932,6 +991,21 @@ section + section {
   }
 }
 
+/* Section Transition - Tech Lines + AI Neural Patterns Animation */
+@keyframes neuralMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-45px);
+  }
+}
+
+.section-transition-bg {
+  animation: neuralMove 18s linear infinite;
+  filter: blur(1.5px);
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out;
 }
@@ -981,5 +1055,96 @@ section + section {
   body {
     background: white !important;
     color: black !important;
+  }
+}
+
+/* ============================================
+   Tech Background - Animated Icons Rain Effect
+   ============================================ */
+/* 
+  Modern, elegant, and professional tech background.
+  Smooth animated icon rain, minimalist and low-contrast.
+  Inspired by Apple/Anthropic/Perplexity/Cursor AI aesthetics.
+  Pure CSS animations, ultra-low opacity, high performance.
+*/
+
+/* Animation for falling icons - vertical rain effect with slight horizontal drift */
+@keyframes techIconFall {
+  0% {
+    transform: translateY(-10%) translateX(0) rotate(0deg);
+    opacity: 0.03;
+  }
+  25% {
+    transform: translateY(30%) translateX(3%) rotate(1deg);
+    opacity: 0.05;
+  }
+  50% {
+    transform: translateY(60%) translateX(-2%) rotate(-1deg);
+    opacity: 0.07;
+  }
+  75% {
+    transform: translateY(90%) translateX(2%) rotate(0.5deg);
+    opacity: 0.06;
+  }
+  100% {
+    transform: translateY(110%) translateX(0) rotate(0deg);
+    opacity: 0.03;
+  }
+}
+
+/* Container for animated tech icons */
+.tech-background-icons {
+  z-index: -1;
+  isolation: isolate;
+}
+
+.tech-icon {
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Services Background */
+.services-background {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  isolation: isolate;
+  z-index: 0;
+}
+
+.services-background > * {
+  position: relative;
+  z-index: 10;
+}
+
+/* FAQ Background */
+.faq-background {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  isolation: isolate;
+  z-index: 0;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.faq-background > * {
+  position: relative;
+  z-index: 10;
+}
+
+/* 
+  Content containers inside sections already have `position: relative` 
+  and `z-index: 10`, which correctly places them above the background icons.
+*/
+
+/* Accessibility: Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tech-icon {
+    animation: none !important;
+  }
+  
+  .tech-background-icons {
+    display: none;
   }
 }

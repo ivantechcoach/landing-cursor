@@ -138,12 +138,12 @@ export default function Header(_props: HeaderProps = {}) {
           </nav>
 
           {/* Language Selector - Compact Dropdown */}
-          <div className="hidden md:flex items-center" ref={languageMenuRef}>
-            <div className="relative">
+          <div className="hidden md:flex items-center relative z-[9999]" ref={languageMenuRef}>
+            <div className="relative z-[9999]">
               <button
                 type="button"
                 onClick={toggleLanguageMenu}
-                className="language-selector-button flex items-center space-x-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 header-button-focus bg-gray-100 hover:bg-gray-200 text-gray-700 solid"
+                className="language-selector-button flex items-center space-x-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 header-button-focus bg-gray-100 hover:bg-gray-200 text-gray-700 solid relative z-[9999]"
                 aria-label={ui.selectLanguage}
                 aria-expanded={isLanguageMenuOpen}
                 aria-haspopup="true"
@@ -172,7 +172,7 @@ export default function Header(_props: HeaderProps = {}) {
 
               {/* Dropdown Menu */}
               {isLanguageMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/20 py-2 z-50 language-dropdown lang-switcher" data-testid="language-switcher-menu">
+                <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/20 py-2 z-[99999] language-dropdown lang-switcher" data-testid="language-switcher-menu">
                   {LOCALES.map((locale) => {
                     const isActive = currentLocale === locale;
                     return (

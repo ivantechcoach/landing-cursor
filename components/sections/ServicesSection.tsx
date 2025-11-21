@@ -11,6 +11,7 @@ import { usePathname } from 'next/navigation';
 import { useLocaleSwitcher } from '@/lib/hooks/useLocaleSwitcher';
 import { getServicesContent } from '@/lib/translations';
 import { buildLocalizedLink } from '@/lib/i18n';
+import TechBackground from '@/components/backgrounds/TechBackground';
 
 interface ServicesSectionProps {
   language?: 'ca' | 'es' | 'en';
@@ -91,10 +92,11 @@ export default function ServicesSection({ className = "" }: ServicesSectionProps
 
   return (
     <section 
-      className={`py-24 bg-white dark:bg-neutral-900 ${className}`} 
+      className={`py-24 bg-white dark:bg-neutral-900 relative ${className}`} 
       aria-labelledby="services-heading"
     >
-      <div className="content-max-width container-padding">
+      <TechBackground iconCount={8} />
+      <div className="content-max-width container-padding relative z-10">
         <div className="text-center mb-16">
           <h2 
             id="services-heading" 

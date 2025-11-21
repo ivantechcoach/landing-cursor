@@ -6,8 +6,8 @@
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
 import ServicesSection from '@/components/sections/ServicesSection';
-import HeroCTA from '@/components/sections/HeroCTA';
-import Testimonials from '@/components/Testimonials';
+import SectionTransition from '@/components/sections/SectionTransition';
+import FAQSection from '@/components/sections/FAQSection';
 import FinalCTASection from '@/components/sections/FinalCTASection';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonld';
@@ -25,14 +25,15 @@ export default function HomePageEN() {
       {/* Hero Section */}
       <Hero language="en" />
 
-      {/* Services Section */}
-      <ServicesSection language="en" />
+      {/* Services Section with Tech Background */}
+      <section className="services-background">
+        <ServicesSection language="en" />
+      </section>
 
-      {/* Hero CTA Section - After wave transition */}
-      <HeroCTA language="en" />
-
-      {/* Testimonials Section */}
-      <Testimonials language="en" />
+      {/* FAQ Section with AI Tech Background */}
+      <section className="faq-background" style={{ marginBottom: 0, paddingBottom: 0 }}>
+        <FAQSection language="en" />
+      </section>
       
       {/* Final CTA Section */}
       <FinalCTASection language="en" />
