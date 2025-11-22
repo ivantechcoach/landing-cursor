@@ -6,9 +6,6 @@
  * Optimized for conversion and accessibility
  */
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { buildLocalizedLink } from '@/lib/i18n';
 import { useLocaleSwitcher } from '@/lib/hooks/useLocaleSwitcher';
 
 interface FinalCTASectionProps {
@@ -16,8 +13,7 @@ interface FinalCTASectionProps {
   className?: string;
 }
 
-export default function FinalCTASection({ language = 'ca', className = "" }: FinalCTASectionProps) {
-  const pathname = usePathname();
+export default function FinalCTASection({ className = "" }: FinalCTASectionProps) {
   const { getCurrentLocale } = useLocaleSwitcher();
   const currentLocale = getCurrentLocale();
 
@@ -47,16 +43,16 @@ export default function FinalCTASection({ language = 'ca', className = "" }: Fin
   const currentContent = content[currentLocale];
 
   return (
-    <section className={`section-padding bg-gradient-to-r from-blue-600 to-purple-600 ${className}`} aria-labelledby="final-cta-heading">
+    <section className={`bg-white ${className}`} style={{ paddingTop: 'clamp(64px, 8vw, 96px)', paddingBottom: 'clamp(64px, 8vw, 96px)' }} aria-labelledby="final-cta-heading">
       <div className="content-max-width container-padding text-center">
-        <h2 id="final-cta-heading" className="text-heading-1 text-white mb-6">
+        <h2 id="final-cta-heading" className="text-heading-1 text-gray-900 mb-6">
           {currentContent.title}
         </h2>
-        <p className="text-body-large text-blue-100 mb-6 max-w-4xl mx-auto">
+        <p className="text-body-large text-gray-700 mb-6 max-w-4xl mx-auto">
           {currentContent.subtitle}
         </p>
-        {/* ADD: subtle divider for visual balance after removing duplicated block */}
-        <div className="h-px bg-white/20 max-w-2xl mx-auto mb-4" aria-hidden="true" />
+        {/* Subtle divider for visual balance */}
+        <div className="h-px bg-gray-300 max-w-2xl mx-auto mb-4" aria-hidden="true" />
         {/* REMOVE: duplicated AI/Cyber block (already present in previous section) */}
       </div>
     </section>

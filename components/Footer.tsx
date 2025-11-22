@@ -13,7 +13,7 @@ interface FooterProps {
   language?: 'ca' | 'es' | 'en';
 }
 
-export default function Footer({ language = 'ca' }: FooterProps) {
+export default function Footer(_props: FooterProps = {}) {
   const pathname = usePathname();
   const { getCurrentLocale } = useLocaleSwitcher();
   
@@ -66,7 +66,7 @@ export default function Footer({ language = 'ca' }: FooterProps) {
   const currentContent = content[currentLocale];
 
   return (
-    <footer className="bg-gray-900 text-white" role="contentinfo">
+    <footer className="bg-gray-900 text-white relative z-0" role="contentinfo" style={{ zIndex: 0 }}>
       <div className="content-max-width container-padding py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
 

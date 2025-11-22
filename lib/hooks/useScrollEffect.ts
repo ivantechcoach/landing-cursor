@@ -12,11 +12,10 @@ interface UseScrollEffectOptions {
 }
 
 export function useScrollEffect(options: UseScrollEffectOptions = {}) {
-  const { threshold = 50, throttleMs = 16 } = options;
+  const { threshold = 50 } = options;
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = 0;
     let ticking = false;
 
     const handleScroll = () => {
@@ -31,7 +30,6 @@ export function useScrollEffect(options: UseScrollEffectOptions = {}) {
             setIsScrolled(false);
           }
           
-          lastScrollY = scrollTop;
           ticking = false;
         });
         ticking = true;

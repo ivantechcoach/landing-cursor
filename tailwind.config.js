@@ -37,6 +37,7 @@ module.exports = {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         serif: ['Georgia', 'serif'],
         mono: ['Fira Code', 'monospace'],
+        sora: ['var(--font-sora)', 'Helvetica Neue', 'Helvetica', 'Arial', 'Verdana', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',

@@ -4,13 +4,18 @@
  * Required by Next.js 14 App Router
  */
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Sora } from 'next/font/google';
 import './globals.css';
 import { Suspense } from 'react';
 import { headers } from 'next/headers';
 import RootLayoutClient from '@/components/RootLayoutClient';
 
 const inter = Inter({ subsets: ['latin'] });
+const sora = Sora({ 
+  subsets: ['latin'],
+  variable: '--font-sora',
+  display: 'swap',
+});
 
 // Root layout metadata - redirects to Catalan version
 export const metadata: Metadata = {
@@ -104,7 +109,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
         
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} ${sora.variable} antialiased`}>
         <Suspense fallback={<div>Loading...</div>}>
           <RootLayoutClient>
             {children}

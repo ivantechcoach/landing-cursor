@@ -34,19 +34,21 @@ export interface Translations {
     subtitle: string;
     cta: string;
     secondaryCta: string;
-    trustBadge: string;
+    complementaryLine: string;
     ariaLabels: {
       goToContact: string;
       viewAllServices: string;
     };
-    trustIndicators: {
-      experience: string;
-      experienceLabel: string;
-      students: string;
-      studentsLabel: string;
-      approach: string;
-      approachLabel: string;
-    };
+  };
+  services: {
+    title: string;
+    subtitle: string;
+    items: Array<{
+      title: string;
+      features: string[];
+      cta: string;
+      ariaLabel: string;
+    }>;
   };
 }
 
@@ -69,23 +71,54 @@ export const translations: Record<Locale, Translations> = {
       mobileNavigation: 'Navegació mòbil',
     },
     hero: {
-      title: 'El teu Coach Tecnològic Personal',
-      subtitle: 'Aprèn a usar tecnologia, ciberseguretat i IA sense por ni complicacions. T\'acompanyo pas a pas, amb paciència i claredat.',
-      cta: 'Reserva sessió gratuïta',
-      secondaryCta: 'Veure serveis',
-      trustBadge: '✓ Coach Certificat en Tecnologia',
+      title: 'Coach Tecnològic i Especialista IT',
+      subtitle: 'Acompanyo a professionals i petites empreses a aprendre tecnologia, treballar amb IA i resoldre problemes IT amb claredat, seguretat i un enfocament pràctic.',
+      cta: 'Reserva la teva sessió gratuïta',
+      secondaryCta: 'Com puc ajudar-te',
+      complementaryLine: 'Suport tècnic N1/N2 • IA aplicada • Xarxes • Seguretat bàsica',
       ariaLabels: {
         goToContact: 'Anar a la pàgina de contacte',
         viewAllServices: 'Veure tots els serveis disponibles',
       },
-      trustIndicators: {
-        experience: '5+',
-        experienceLabel: 'Anys ajudant',
-        students: '200+',
-        studentsLabel: 'Persones formades',
-        approach: '100%',
-        approachLabel: 'Personalitzat',
-      },
+    },
+    services: {
+      title: 'Serveis Professionals',
+      subtitle: 'Solucions clares i pràctiques per avançar en tecnologia.',
+      items: [
+        {
+          title: 'Tech Coaching Personalitzat',
+          features: [
+            'Formació 1:1',
+            'IA aplicada',
+            'Productivitat digital',
+            'Acompanyament pas a pas',
+          ],
+          cta: 'Vull aprendre',
+          ariaLabel: 'Sol·licitar coaching personalitzat',
+        },
+        {
+          title: 'Suport Tècnic i Solució de Problemes IT',
+          features: [
+            'Windows, macOS, Linux',
+            'Xarxes i connectivitat',
+            'Impressores, backups, diagnòstics',
+            'Manteniment preventiu',
+          ],
+          cta: 'Necessito suport',
+          ariaLabel: 'Sol·licitar suport tècnic',
+        },
+        {
+          title: 'IA Aplicada i Automatització',
+          features: [
+            'ChatGPT professional',
+            'Fluxos automatitzats',
+            'Integracions',
+            'Assessorament estratègic',
+          ],
+          cta: 'Implementar IA',
+          ariaLabel: 'Sol·licitar implementació d\'IA',
+        },
+      ],
     },
   },
   es: {
@@ -106,23 +139,54 @@ export const translations: Record<Locale, Translations> = {
       mobileNavigation: 'Navegación móvil',
     },
     hero: {
-      title: 'Tu Coach de Tecnología Personal',
-      subtitle: 'Aprende a usar tecnología, ciberseguridad e IA sin miedo ni complicaciones. Te ayudo paso a paso, con paciencia y claridad.',
-      cta: 'Reserva sesión gratuita',
-      secondaryCta: 'Ver servicios',
-      trustBadge: '✓ Coach Certificado en Tecnología',
+      title: 'Coach Tecnológico y Especialista IT',
+      subtitle: 'Acompaño a profesionales y pequeñas empresas a aprender tecnología, trabajar con IA y resolver problemas IT con claridad, seguridad y un enfoque práctico.',
+      cta: 'Reserva tu sesión gratuita',
+      secondaryCta: 'Cómo puedo ayudarte',
+      complementaryLine: 'Soporte técnico N1/N2 • IA aplicada • Redes • Seguridad básica',
       ariaLabels: {
         goToContact: 'Ir a la página de contacto',
         viewAllServices: 'Ver todos los servicios disponibles',
       },
-      trustIndicators: {
-        experience: '5+',
-        experienceLabel: 'Años ayudando',
-        students: '200+',
-        studentsLabel: 'Personas formadas',
-        approach: '100%',
-        approachLabel: 'Personalizado',
-      },
+    },
+    services: {
+      title: 'Servicios Profesionales',
+      subtitle: 'Soluciones claras y prácticas para avanzar en tecnología.',
+      items: [
+        {
+          title: 'Tech Coaching Personalizado',
+          features: [
+            'Formación 1:1',
+            'IA aplicada',
+            'Productividad digital',
+            'Acompañamiento paso a paso',
+          ],
+          cta: 'Quiero aprender',
+          ariaLabel: 'Solicitar coaching personalizado',
+        },
+        {
+          title: 'Soporte Técnico y Solución de Problemas IT',
+          features: [
+            'Windows, macOS, Linux',
+            'Redes y conectividad',
+            'Impresoras, backups, diagnósticos',
+            'Mantenimiento preventivo',
+          ],
+          cta: 'Necesito soporte',
+          ariaLabel: 'Solicitar soporte técnico',
+        },
+        {
+          title: 'IA Aplicada y Automatización',
+          features: [
+            'ChatGPT profesional',
+            'Flujos automatizados',
+            'Integraciones',
+            'Asesoramiento estratégico',
+          ],
+          cta: 'Implementar IA',
+          ariaLabel: 'Solicitar implementación de IA',
+        },
+      ],
     },
   },
   en: {
@@ -143,23 +207,54 @@ export const translations: Record<Locale, Translations> = {
       mobileNavigation: 'Mobile navigation',
     },
     hero: {
-      title: 'Your Personal Tech Coach',
-      subtitle: 'Learn to use technology, cybersecurity and AI without fear or complications. I guide you step by step, with patience and clarity.',
-      cta: 'Book free session',
-      secondaryCta: 'View services',
-      trustBadge: '✓ Certified Tech Coach',
+      title: 'Tech Coach & IT Specialist',
+      subtitle: 'I help professionals and small businesses learn technology, work with AI, and solve IT problems with clarity, security, and a practical approach.',
+      cta: 'Book your free session',
+      secondaryCta: 'How can I help you',
+      complementaryLine: 'N1/N2 Technical Support • Applied AI • Networks • Basic Security',
       ariaLabels: {
         goToContact: 'Go to contact page',
         viewAllServices: 'View all available services',
       },
-      trustIndicators: {
-        experience: '5+',
-        experienceLabel: 'Years helping',
-        students: '200+',
-        studentsLabel: 'People trained',
-        approach: '100%',
-        approachLabel: 'Personalized',
-      },
+    },
+    services: {
+      title: 'Professional Services',
+      subtitle: 'Clear and practical solutions to advance in technology.',
+      items: [
+        {
+          title: 'Personalized Tech Coaching',
+          features: [
+            '1:1 Training',
+            'Applied AI',
+            'Digital productivity',
+            'Step-by-step guidance',
+          ],
+          cta: 'I want to learn',
+          ariaLabel: 'Request personalized coaching',
+        },
+        {
+          title: 'Technical Support & IT Troubleshooting',
+          features: [
+            'Windows, macOS, Linux',
+            'Networks and connectivity',
+            'Printers, backups, diagnostics',
+            'Preventive maintenance',
+          ],
+          cta: 'I need support',
+          ariaLabel: 'Request technical support',
+        },
+        {
+          title: 'Applied AI & Automation',
+          features: [
+            'Professional ChatGPT',
+            'Automated workflows',
+            'Integrations',
+            'Strategic consulting',
+          ],
+          cta: 'Implement AI',
+          ariaLabel: 'Request AI implementation',
+        },
+      ],
     },
   },
 };
@@ -197,6 +292,15 @@ export function getUITranslations(locale: Locale) {
  */
 export function getHeroContent(locale: Locale) {
   return translations[locale].hero;
+}
+
+/**
+ * Get services content for a specific locale
+ * @param locale - Target locale
+ * @returns Services content
+ */
+export function getServicesContent(locale: Locale) {
+  return translations[locale].services;
 }
 
 /**

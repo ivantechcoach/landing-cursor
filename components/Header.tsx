@@ -17,13 +17,12 @@ interface HeaderProps {
   language?: 'ca' | 'es' | 'en';
 }
 
-export default function Header({ language = 'ca' }: HeaderProps) {
+export default function Header(_props: HeaderProps = {}) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const { switchLocale, getCurrentLocale } = useLocaleSwitcher();
   const { isScrolled } = useDebbieCodesNavbar({ threshold: 50 });
-  const mainRef = useRef<HTMLElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
   
   // Get current locale and translations
@@ -69,20 +68,6 @@ export default function Header({ language = 'ca' }: HeaderProps) {
     };
   }, [isLanguageMenuOpen]);
 
-  // Handle locale switching with focus management
-  const handleLocaleSwitch = (newLocale: Locale) => {
-    switchLocale(newLocale);
-    
-    // Move focus to main content after locale change
-    // Use setTimeout to ensure DOM is updated
-    setTimeout(() => {
-      const mainElement = document.querySelector('main h1') as HTMLElement;
-      if (mainElement) {
-        mainElement.focus();
-      }
-    }, 100);
-  };
-
   return (
     <>
       {/* Skip Link - First in tab order */}
@@ -102,7 +87,7 @@ export default function Header({ language = 'ca' }: HeaderProps) {
       </a>
       
       <header 
-        className={`navbar-debbie-codes fixed top-0 left-0 right-0 bg-white ${isScrolled ? 'shadow-md' : ''} z-50`}
+        className={`navbar-debbie-codes sticky top-0 z-50 bg-white/80 backdrop-blur ${isScrolled ? 'shadow-md' : ''}`}
         role="banner"
         style={{ height: '80px' }}
       >
@@ -153,12 +138,12 @@ export default function Header({ language = 'ca' }: HeaderProps) {
           </nav>
 
           {/* Language Selector - Compact Dropdown */}
-          <div className="hidden md:flex items-center" ref={languageMenuRef}>
-            <div className="relative">
+          <div className="hidden md:flex items-center relative z-[60]" ref={languageMenuRef}>
+            <div className="relative z-[60]">
               <button
                 type="button"
                 onClick={toggleLanguageMenu}
-                className="language-selector-button flex items-center space-x-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 header-button-focus bg-gray-100 hover:bg-gray-200 text-gray-700 solid"
+                className="language-selector-button flex items-center space-x-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 header-button-focus bg-gray-100 hover:bg-gray-200 text-gray-700 solid relative z-[60]"
                 aria-label={ui.selectLanguage}
                 aria-expanded={isLanguageMenuOpen}
                 aria-haspopup="true"
@@ -187,7 +172,7 @@ export default function Header({ language = 'ca' }: HeaderProps) {
 
               {/* Dropdown Menu */}
               {isLanguageMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/20 py-2 z-50 language-dropdown lang-switcher" data-testid="language-switcher-menu">
+                <div className="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/20 py-2 z-[70] language-dropdown lang-switcher" data-testid="language-switcher-menu">
                   {LOCALES.map((locale) => {
                     const isActive = currentLocale === locale;
                     return (
@@ -308,7 +293,6 @@ export default function Header({ language = 'ca' }: HeaderProps) {
                           type="button"
                           onClick={() => {
                             handleLanguageSelect(locale);
-                            setIsMobileMenuOpen(false);
                           }}
                           className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 header-button-focus flex flex-col items-center ${
                             isActive

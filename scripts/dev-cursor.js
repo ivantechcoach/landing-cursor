@@ -104,7 +104,8 @@ async function main() {
   const nextDev = spawn(command, args, {
     cwd: projectRoot,
     stdio: 'inherit',
-    shell: false, // Don't use shell on Windows to avoid PowerShell issues
+    // FIX: Enable shell on Windows to properly execute .cmd files like npx.cmd
+    shell: isWindows,
     env: {
       ...process.env,
       PORT: port.toString(),

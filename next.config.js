@@ -3,8 +3,6 @@ const nextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['@/components', '@/lib'],
-    // Enable React compiler optimizations
-    reactCompiler: false, // Set to true when React Compiler is stable
   },
   
   // Optimize production builds
