@@ -87,7 +87,7 @@ export default function Header(_props: HeaderProps = {}) {
       </a>
       
       <header 
-        className={`navbar-debbie-codes sticky top-0 left-0 right-0 bg-white/80 backdrop-blur ${isScrolled ? 'shadow-md' : ''} z-50`}
+        className={`navbar-debbie-codes sticky top-0 z-50 bg-white/80 backdrop-blur ${isScrolled ? 'shadow-md' : ''}`}
         role="banner"
         style={{ height: '80px' }}
       >

@@ -167,11 +167,7 @@ svg {
   display: block;
 }
 
-/* Wave Fix - Prevents hairline issues */
-.wave-fix {
-  position: relative;
-  bottom: -1px;
-}
+/* Wave Fix - Removed to prevent overflow issues */
 
 /* ============================================
    PREVENCIÓN DE OVERFLOW-X GLOBAL
@@ -433,7 +429,8 @@ a {
 
   /* Z-index management para hero, wave y foto */
   .hero-section {
-    z-index: 1;
+    z-index: 10;
+    position: relative;
   }
 
   .hero-gradient {
@@ -445,7 +442,7 @@ a {
   }
 
   .wave-container {
-    z-index: 5;
+    z-index: 0;
   }
   
   .card {
@@ -884,15 +881,21 @@ section + section {
 
 /* Separación entre bloques en móvil: 24-40px, desktop: 40-64px */
 @media (max-width: 768px) {
-  section + section:not([aria-labelledby="final-cta-heading"]) {
+  section + section:not([aria-labelledby="final-cta-heading"]):not([id="tech-icons-section"]) {
     padding-top: clamp(24px, 5vw, 40px);
   }
 }
 
 @media (min-width: 768px) {
-  section + section:not([aria-labelledby="final-cta-heading"]) {
+  section + section:not([aria-labelledby="final-cta-heading"]):not([id="tech-icons-section"]) {
     padding-top: clamp(40px, 6vw, 64px);
   }
+}
+
+/* Ensure no padding/margin overlap between FinalCTA and TechIconsSection */
+section[aria-labelledby="final-cta-heading"] + section[id="tech-icons-section"] {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 /* Remove spacing between FAQ and FinalCTA sections for seamless transition */
@@ -915,6 +918,20 @@ section.faq-background ~ section[aria-labelledby="final-cta-heading"] {
 .faq-background > section {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
+}
+
+/* Ensure proper spacing between sections - prevent overlapping */
+section[aria-labelledby="final-cta-heading"] + section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Wave separator should not create gaps */
+.wave-separator {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 0;
 }
 
 .animated-wave-group > use {
@@ -954,6 +971,10 @@ section.faq-background ~ section[aria-labelledby="final-cta-heading"] {
   width: 100%;
   overflow: hidden;
   line-height: 0;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
 }
 
 .wave-separator-group .wave-separator-layer-1 {
@@ -1006,6 +1027,58 @@ section.faq-background ~ section[aria-labelledby="final-cta-heading"] {
   .wave-separator-group .wave-separator-layer-3,
   .wave-separator-group .wave-separator-layer-4 {
     animation: none !important;
+  }
+}
+
+/* ============================================
+   Tech Icons Section - Animated Icons
+   ============================================ */
+@keyframes tech-icon-float {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+.tech-icon-float {
+  animation: tech-icon-float 3s ease-in-out infinite;
+}
+
+.tech-icon-wrapper {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Stagger animation delays for icons */
+.tech-icon-wrapper:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.tech-icon-wrapper:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.tech-icon-wrapper:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.tech-icon-wrapper:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .tech-icon-float {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .tech-icon-wrapper {
+    animation: none !important;
+    opacity: 1 !important;
   }
 }
 
@@ -1161,7 +1234,7 @@ section.faq-background ~ section[aria-labelledby="final-cta-heading"] {
   overflow: hidden;
   background-color: #ffffff;
   isolation: isolate;
-  z-index: 0;
+  z-index: 10;
 }
 
 .services-background > * {
@@ -1175,7 +1248,7 @@ section.faq-background ~ section[aria-labelledby="final-cta-heading"] {
   overflow: hidden;
   background-color: #ffffff;
   isolation: isolate;
-  z-index: 0;
+  z-index: 10;
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
 }

@@ -21,9 +21,10 @@ function Hero({
 }: HeroProps) {
   return (
     <section 
-      className={`relative flex items-center overflow-visible hero-section ${className}`}
+      className={`relative flex items-center overflow-hidden hero-section ${className}`}
       style={{ 
-        contain: 'layout style paint'
+        contain: 'layout style paint',
+        zIndex: 10
       }}
       aria-label="Hero section"
     >
@@ -38,8 +39,10 @@ function Hero({
         <HeroContent language={language} />
       </div>
 
-      {/* Wave Separator */}
-      <WaveSeparator nextBg="#FFFFFF" />
+      {/* Wave Separator - positioned at bottom of hero */}
+      <div className="absolute bottom-0 left-0 w-full" style={{ zIndex: 0 }}>
+        <WaveSeparator nextBg="#FFFFFF" />
+      </div>
     </section>
   );
 }

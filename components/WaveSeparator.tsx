@@ -16,7 +16,7 @@ function WaveSeparator({
   className = ""
 }: WaveSeparatorProps) {
   return (
-    <div className={`relative w-full wave-separator ${className}`} style={{ transform: 'translateZ(0)' }}>
+    <div className={`relative w-full overflow-hidden wave-separator ${className}`} style={{ transform: 'translateZ(0)', zIndex: 0 }}>
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -24,7 +24,7 @@ function WaveSeparator({
         preserveAspectRatio="none" 
         shapeRendering="geometricPrecision"
         className="block w-full h-[120px] sm:h-[160px]"
-        style={{ transform: 'translateZ(0)' }}
+        style={{ transform: 'translateZ(0)', display: 'block' }}
         aria-hidden="true"
       >
         <defs>

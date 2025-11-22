@@ -6,9 +6,9 @@
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
 import ServicesSection from '@/components/sections/ServicesSection';
-import SectionTransition from '@/components/sections/SectionTransition';
 import FAQSection from '@/components/sections/FAQSection';
 import FinalCTASection from '@/components/sections/FinalCTASection';
+import TechIconsSection from '@/components/sections/TechIconsSection';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
 import { buildBreadcrumbJsonLd } from '@/lib/jsonld';
 
@@ -37,6 +37,9 @@ export default function HomePageEN() {
       
       {/* Final CTA Section */}
       <FinalCTASection language="en" />
+      
+      {/* Tech Icons Section */}
+      <TechIconsSection />
     </>
   );
 }
